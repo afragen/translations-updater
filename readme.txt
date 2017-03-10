@@ -5,8 +5,9 @@ Tags: plugin, theme, language pack, updater
 Requires at least: 4.4
 Tested up to: 4.7
 Stable tag: master
-License: GPLv2 or later
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Donate link: http://thefragens.com/translations-updater-donate
+License: MIT
+License URI: http://www.opensource.org/licenses/MIT
 
 ## Description
 

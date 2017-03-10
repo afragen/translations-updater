@@ -8,8 +8,8 @@
 * Tested up to: 4.7
 * Stable tag: master
 * Donate link: http://thefragens.com/github-updater-donate
-* License: GPLv2 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
+* License: MIT
+* License URI: http://www.opensource.org/licenses/MIT
 
 A simple plugin to enable automatic updates to your GitHub, Bitbucket, or GitLab hosted WordPress language packs.
 
