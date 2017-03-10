@@ -20,7 +20,7 @@
  * Text Domain:       translations-updater
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/translations-updater
- * GitHub Branch:     develop
+ * GitHub Branch:     master
  * Requires WP:       4.6
  * Requires PHP:      5.3
  */
