@@ -34,7 +34,7 @@ class Language_Pack extends Base {
 	/**
 	 * Variable containing the git host API object.
 	 *
-	 * @var
+	 * @var object
 	 */
 	protected $repo_api;
 

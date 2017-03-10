@@ -35,20 +35,11 @@ class Plugin extends Base {
 	private static $instance = false;
 
 	/**
-	 * Rollback variable
-	 *
-	 * @var string branch
-	 */
-	//public $tag = false;
-
-	/**
 	 * Constructor.
 	 */
 	public function __construct() {
 
-		/*
-		 * Get details of installed plugins.
-		 */
+		// Get details of installed plugins.
 		$this->config = $this->get_plugin_meta();
 
 		if ( empty( $this->config ) ) {
@@ -81,14 +72,13 @@ class Plugin extends Base {
 	}
 
 	/**
-	 * Get details of Git-sourced plugins from those that are installed.
+	 * Get details of plugins from those that are installed.
 	 *
 	 * @return array Indexed array of associative arrays of plugin details.
 	 */
 	protected function get_plugin_meta() {
-		/*
-		 * Ensure get_plugins() function is available.
-		 */
+
+		// Ensure get_plugins() function is available.
 		include_once( ABSPATH . '/wp-admin/includes/plugin.php' );
 
 		$plugins     = get_plugins();
@@ -125,7 +115,7 @@ class Plugin extends Base {
 
 				$git_plugin['type']          = $repo_parts['type'];
 				$git_plugin['owner']         = $header['owner'];
-				$git_plugin['repo']          = $header['repo'];
+				$git_plugin['repo']          = dirname( $plugin );
 				$git_plugin['slug']          = $plugin;
 				$plugin_data                 = get_plugin_data( WP_PLUGIN_DIR . '/' . $git_plugin['slug'] );
 				$git_plugin['local_version'] = strtolower( $plugin_data['Version'] );

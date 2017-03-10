@@ -20,7 +20,7 @@ if ( ! defined( 'WPINC' ) ) {
 /**
  * Class Base
  *
- * Update a WordPress language packs from a Git-based repo.
+ * Update WordPress language packs from a git hosted repo.
  *
  * @package Fragen\Translations_Updater
  * @author  Andy Fragen
@@ -63,13 +63,6 @@ class Base {
 	protected static $extra_headers = array();
 
 	/**
-	 * Holds the values to be used in the fields callbacks.
-	 *
-	 * @var array
-	 */
-	protected static $options;
-
-	/**
 	 * Holds git server types.
 	 *
 	 * @var array
@@ -107,13 +100,6 @@ class Base {
 		}
 
 		$this->load_hooks();
-	}
-
-	/**
-	 * Load site options.
-	 */
-	protected function load_options() {
-		//self::$options        = get_site_option( 'github_updater', array() );
 	}
 
 	/**
@@ -185,7 +171,6 @@ class Base {
 	 */
 	public function forced_meta_update_plugins() {
 		if ( self::$load_repo_meta ) {
-			//$this->load_options();
 			Plugin::instance()->get_remote_plugin_meta();
 		}
 	}
@@ -195,7 +180,6 @@ class Base {
 	 */
 	public function forced_meta_update_themes() {
 		if ( self::$load_repo_meta ) {
-			//$this->load_options();
 			Theme::instance()->get_remote_theme_meta();
 		}
 	}
@@ -233,23 +217,9 @@ class Base {
 	 * @return bool
 	 */
 	public function get_remote_repo_meta( $repo ) {
-		self::$hours    = 12;
+		self::$hours    = 6 + rand( 0, 12 );
 		$this->repo_api = null;
-
-		switch ( $repo->type ) {
-			case 'github_plugin':
-			case 'github_theme':
-				$this->repo_api = new GitHub_API( $repo );
-				break;
-			case 'bitbucket_plugin':
-			case 'bitbucket_theme':
-				$this->repo_api = new Bitbucket_API( $repo );
-				break;
-			case 'gitlab_plugin':
-			case 'gitlab_theme':
-				$this->repo_api = new GitLab_API( $repo );
-				break;
-		}
+		$this->repo_api = new Language_Pack_API( $repo );
 
 		if ( null === $this->repo_api ) {
 			return false;

@@ -36,8 +36,6 @@ abstract class API extends Base {
 	 */
 	abstract public function get_language_pack( $headers );
 
-	abstract protected function add_endpoints( $git, $endpoint );
-
 	/**
 	 * Adds custom user agent for Translations Updater.
 	 *
@@ -132,14 +130,10 @@ abstract class API extends Base {
 
 		switch ( $type['repo'] ) {
 			case 'github':
-				$api = new GitHub_API( $type['type'] );
-				//$endpoint = $api->add_endpoints( $this, $endpoint );
+			case 'bitbucket':
 				break;
 			case 'gitlab':
-				$api      = new GitLab_API( $type['type'] );
-				$endpoint = $api->add_endpoints( $this, $endpoint );
-				break;
-			case 'bitbucket':
+				$endpoint = add_query_arg( 'ref', 'master', $endpoint );
 				break;
 			default:
 		}
