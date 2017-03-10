@@ -226,7 +226,7 @@ class Base {
 		}
 
 		$this->{$repo->type} = $repo;
-		$this->languages     = new Language_Pack( $repo, $this->repo_api );
+		$this->languages     = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
 
 		$this->remove_hooks();
 
