@@ -217,14 +217,7 @@ class Base {
 	 * @return bool
 	 */
 	public function get_remote_repo_meta( $repo ) {
-		self::$hours    = 6 + rand( 0, 12 );
-		$this->repo_api = null;
-		$this->repo_api = new Language_Pack_API( $repo );
-
-		if ( null === $this->repo_api ) {
-			return false;
-		}
-
+		self::$hours         = 6 + rand( 0, 12 );
 		$this->{$repo->type} = $repo;
 		$this->languages     = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
 
