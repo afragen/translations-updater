@@ -1,0 +1,36 @@
+{
+  "name": "afragen/translations-updater",
+  "type": "wordpress-plugin",
+  "keywords": [
+    "wordpress",
+    "plugin",
+    "theme",
+    "updater",
+    "translations"
+  ],
+  "license": "GPLv2",
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/afragen/translations-updater"
+    }
+  ],
+  "authors": [
+    {
+      "name": "Andy Fragen",
+      "email": "andy@thefragens.com",
+      "homepage": "https://thefragens.com",
+      "role": "Developer"
+    }
+  ],
+  "prefer-stable": true,
+  "require": {
+    "composer/installers": "^1.0",
+    "php": ">=5.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fragen\\Translations_Updater\\": "src/Translations_Updater"
+    }
+  }
+}
