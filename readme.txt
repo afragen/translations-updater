@@ -1,9 +1,9 @@
 # Translations Updater
+
 Contributors: afragen
-Donate link: http://thefragens.com/translations-updater-donate
 Tags: plugin, theme, language pack, updater
-Requires at least: 4.4
-Tested up to: 4.7
+Requires at least: 4.6
+Requires PHP: 5.3
 Stable tag: master
 Donate link: http://thefragens.com/translations-updater-donate
 License: MIT
@@ -32,4 +32,4 @@ The following headers are available for use depending upon your hosting source.
 
 ## Slack
 
-We now have a [Slack team for Translations Updater](https://translations-updater.slack.com). Please [click here for an invite](https://translations-updater.herokuapp.com). You will be automatically added to the _#general_ and _#random_ channels. Please take a look at other channels too.
+We now have a [Slack team for GitHub Updater](https://github-updater.slack.com). Please [click here for an invite](https://github-updater.herokuapp.com). You will be automatically added to the _#general_ and _#random_ channels. Please take a look at other channels too.
