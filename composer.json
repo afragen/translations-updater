@@ -8,7 +8,7 @@
     "updater",
     "translations"
   ],
-  "license": "GPLv2",
+  "license": "MIT",
   "repositories": [
     {
       "type": "vcs",
@@ -31,6 +31,9 @@
   "autoload": {
     "psr-4": {
       "Fragen\\Translations_Updater\\": "src/Translations_Updater"
-    }
+    },
+    "files": [
+      "translations-updater.php"
+    ]
   }
 }
