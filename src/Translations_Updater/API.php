@@ -117,16 +117,7 @@ abstract class API extends Base {
 	 * @return string $endpoint
 	 */
 	protected function get_api_url( $endpoint ) {
-		$type     = $this->return_repo_type();
-		$segments = array(
-			'owner'  => $this->type->owner,
-			'repo'   => $this->type->repo,
-			'branch' => empty( $this->type->branch ) ? 'master' : $this->type->branch,
-		);
-
-		foreach ( $segments as $segment => $value ) {
-			$endpoint = str_replace( '/:' . $segment, '/' . sanitize_text_field( $value ), $endpoint );
-		}
+		$type = $this->return_repo_type();
 
 		switch ( $type['repo'] ) {
 			case 'github':
