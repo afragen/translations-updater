@@ -124,7 +124,7 @@ class Base {
 	}
 
 	/**
-	 * Instantiate Plugin, Theme, and Settings for proper user capabilities.
+	 * Instantiate Plugin and Theme for proper user capabilities.
 	 *
 	 * @return bool
 	 */
@@ -184,7 +184,6 @@ class Base {
 		}
 	}
 
-
 	/**
 	 * Add extra headers to get_plugins() or wp_get_themes().
 	 *
@@ -209,7 +208,7 @@ class Base {
 	}
 
 	/**
-	 * Get remote repo meta data for plugins or themes.
+	 * Get remote repo meta data for language-pack.json file.
 	 * Calls remote APIs for data.
 	 *
 	 * @param $repo

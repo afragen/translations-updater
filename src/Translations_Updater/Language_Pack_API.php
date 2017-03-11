@@ -10,7 +10,6 @@
 
 namespace Fragen\Translations_Updater;
 
-
 /**
  * Class Language_Pack_API
  *

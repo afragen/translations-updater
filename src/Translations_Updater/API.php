@@ -48,7 +48,7 @@ abstract class API extends Base {
 		$args['sslverify'] = true;
 		if ( false === stristr( $args['user-agent'], 'Translations Updater' ) ) {
 			$args['user-agent']    = $args['user-agent'] . '; Translations Updater - https://github.com/afragen/translations-updater';
-			$args['wp-rest-cache'] = array( 'tag' => 'translations-updater' );
+			$args['wp-rest-cache'] = array( 'tag' => 'github-updater' );
 		}
 
 		return $args;
@@ -184,6 +184,5 @@ abstract class API extends Base {
 
 		return true;
 	}
-
 
 }

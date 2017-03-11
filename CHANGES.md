@@ -1,5 +1,5 @@
 #### 0.3 / 2017-03-10
-* simplify calls to `class Language_Pack` for possible inclusion back to GitHub Updater
+* simplify calls to `class Language_Pack` for inclusion back to GitHub Updater
 
 #### 0.2 / 2017-03-10
 * major refactor to single API class handling all git hosts
