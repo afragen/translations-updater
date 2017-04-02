@@ -1,3 +1,6 @@
+#### 0.4 / 2017-04-02
+* make Autoloader a drop-in
+
 #### 0.3 / 2017-03-10
 * simplify calls to `class Language_Pack` for inclusion back to GitHub Updater
 
