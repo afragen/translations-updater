@@ -29,14 +29,6 @@ if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) ) {
 	exit;
 }
 
-//delete_site_option( 'github_updater' );
-//delete_option( 'github_updater' );
-//delete_site_option( 'github_updater_api_key' );
-//delete_option( 'github_updater_api_key' );
-//
-//delete_site_option( 'github_updater_remote_management' );
-//delete_option( 'github_updater_remote_management' );
-
 include_once( 'translations-updater.php' );
 $base = new Fragen\Translations_Updater\Base();
 $base->delete_all_cached_data();

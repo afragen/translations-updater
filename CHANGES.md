@@ -1,3 +1,6 @@
+#### 0.5 / 2107-04-10
+* cleanup uninstall
+
 #### 0.4 / 2017-04-02
 * make Autoloader a drop-in
 
