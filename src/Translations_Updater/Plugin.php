@@ -43,7 +43,7 @@ class Plugin extends Base {
 		$this->config = $this->get_plugin_meta();
 
 		if ( empty( $this->config ) ) {
-			return false;
+			return;
 		}
 	}
 
@@ -97,7 +97,7 @@ class Plugin extends Base {
 			foreach ( (array) self::$extra_headers as $value ) {
 				$header = null;
 
-				if ( empty( $headers[ $value ] ) || false === stristr( $value, 'Languages' ) ) {
+				if ( empty( $headers[ $value ] ) || false === stripos( $value, 'Languages' ) ) {
 					continue;
 				}
 

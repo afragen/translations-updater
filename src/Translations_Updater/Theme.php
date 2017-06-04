@@ -43,7 +43,7 @@ class Theme extends Base {
 		$this->config = $this->get_theme_meta();
 
 		if ( empty( $this->config ) ) {
-			return false;
+			return;
 		}
 	}
 
@@ -89,7 +89,7 @@ class Theme extends Base {
 				$repo_uri = $theme->get( $value );
 
 
-				if ( empty( $repo_uri ) || false === stristr( $value, 'Languages' ) ) {
+				if ( empty( $repo_uri ) || false === stripos( $value, 'Languages' ) ) {
 					continue;
 				}
 

@@ -144,7 +144,7 @@ class Base {
 			'update.php',
 		);
 
-		if ( in_array( $pagenow, array_unique( $admin_pages ) ) ) {
+		if ( in_array( $pagenow, array_unique( $admin_pages ), true ) ) {
 			$force_meta_update = true;
 		}
 
@@ -216,7 +216,7 @@ class Base {
 	 * @return bool
 	 */
 	public function get_remote_repo_meta( $repo ) {
-		self::$hours         = 6 + rand( 0, 12 );
+		self::$hours         = 6 + mt_rand( 0, 12 );
 		$this->{$repo->type} = $repo;
 		$this->languages     = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
 
