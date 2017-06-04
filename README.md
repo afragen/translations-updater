@@ -3,9 +3,9 @@
 
 * Contributors: [Andy Fragen](https://github.com/afragen)
 * Tags: plugin, theme, update, translations
-* Requires at least: 4.4
+* Requires at least: 4.6
 * Requires PHP: 5.3
-* Tested up to: 4.7
+* Tested up to: 4.8
 * Stable tag: master
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT

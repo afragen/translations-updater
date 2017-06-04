@@ -27,14 +27,14 @@ class Language_Pack extends Base {
 	/**
 	 * Variable containing the plugin/theme object.
 	 *
-	 * @var object
+	 * @var object $repo
 	 */
 	protected $repo;
 
 	/**
 	 * Variable containing the git host API object.
 	 *
-	 * @var object
+	 * @var object $repo_api
 	 */
 	protected $repo_api;
 

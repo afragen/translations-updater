@@ -61,7 +61,7 @@ class Plugin extends Base {
 	 * method - this prevents unnecessary work in rebuilding the object and
 	 * querying to construct a list of categories, etc.
 	 *
-	 * @return object $instance Plugin
+	 * @return object Plugin
 	 */
 	public static function instance() {
 		if ( false === self::$instance ) {

@@ -1,4 +1,8 @@
-#### 0.5 / 2107-04-10
+#### 0.6 / 2017-06-04
+* simplify uninstall
+* update rand to mt_rand
+
+#### 0.5 / 2017-04-10
 * cleanup uninstall
 
 #### 0.4 / 2017-04-02

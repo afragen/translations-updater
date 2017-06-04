@@ -30,42 +30,42 @@ class Base {
 	/**
 	 * Store details of all repositories that are installed.
 	 *
-	 * @var object
+	 * @var object $config
 	 */
 	protected $config;
 
 	/**
 	 * Class Object for API.
 	 *
-	 * @var object
+	 * @var object $repo_api
 	 */
 	protected $repo_api;
 
 	/**
 	 * Class Object for Language Packs.
 	 *
-	 * @var
+	 * @var object $languages
 	 */
 	protected $languages;
 
 	/**
 	 * Variable for setting update transient hours.
 	 *
-	 * @var integer
+	 * @var integer $hours
 	 */
 	protected static $hours;
 
 	/**
 	 * Variable for holding extra theme and plugin headers.
 	 *
-	 * @var array
+	 * @var array $extra_headers
 	 */
 	protected static $extra_headers = array();
 
 	/**
 	 * Holds git server types.
 	 *
-	 * @var array
+	 * @var array $git_servers
 	 */
 	protected static $git_servers = array(
 		'github'    => 'GitHub',
@@ -76,7 +76,7 @@ class Base {
 	/**
 	 * Holds extra repo header types.
 	 *
-	 * @var array
+	 * @var array $extra_repo_headers
 	 */
 	protected static $extra_repo_headers = array(
 		'languages' => 'Languages',
@@ -86,7 +86,7 @@ class Base {
 	 * Variable to hold boolean to load remote meta.
 	 * Checks user privileges and when to load.
 	 *
-	 * @var bool
+	 * @var bool $load_repo_meta
 	 */
 	protected static $load_repo_meta;
 
