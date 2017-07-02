@@ -1,3 +1,6 @@
+#### 0.7 / 2017-07-02
+* update `Base->parse_header_uri()` for GitLab Groups
+
 #### 0.6 / 2017-06-04
 * simplify uninstall
 * update rand to mt_rand
