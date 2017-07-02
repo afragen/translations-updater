@@ -27,13 +27,5 @@
   "require": {
     "composer/installers": "^1.0",
     "php": ">=5.3"
-  },
-  "autoload": {
-    "psr-4": {
-      "Fragen\\Translations_Updater\\": "src/Translations_Updater"
-    },
-    "files": [
-      "translations-updater.php"
-    ]
   }
 }
