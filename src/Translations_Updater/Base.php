@@ -243,7 +243,7 @@ class Base {
 		$header['base_uri']   = str_replace( $header_parts['path'], '', $repo_header );
 		$header['uri']        = isset( $header['scheme'] ) ? trim( $repo_header, '/' ) : null;
 
-		$header = Settings::sanitize( $header );
+		$header = self::sanitize( $header );
 
 		return $header;
 	}

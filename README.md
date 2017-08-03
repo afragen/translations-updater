@@ -5,7 +5,7 @@
 * Tags: plugin, theme, update, translations
 * Requires at least: 4.6
 * Requires PHP: 5.3
-* Tested up to: 4.8
+* Tested up to: 4.9
 * Stable tag: master
 * Donate link: http://thefragens.com/github-updater-donate
 * License: MIT

@@ -1,3 +1,6 @@
+#### 0.8 / 2017-08-03
+* fix reference to `Base::sanitize()`
+
 #### 0.7 / 2017-07-02
 * update `Base->parse_header_uri()` for GitLab Groups
 
