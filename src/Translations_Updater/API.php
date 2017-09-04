@@ -31,8 +31,12 @@ abstract class API extends Base {
 	 */
 	protected $response = array();
 
-	/*
-	 * The following functions must be in any repository API.
+	/**
+	 * Function to get language pack JSON.
+	 *
+	 * @param $headers
+	 *
+	 * @return mixed
 	 */
 	abstract public function get_language_pack( $headers );
 
@@ -46,8 +50,8 @@ abstract class API extends Base {
 	 */
 	public static function http_request_args( $args, $url ) {
 		$args['sslverify'] = true;
-		if ( false === stristr( $args['user-agent'], 'Translations Updater' ) ) {
-			$args['user-agent']    = $args['user-agent'] . '; Translations Updater - https://github.com/afragen/translations-updater';
+		if ( false === strpos( $args['user-agent'], 'Translations Updater' ) ) {
+			$args['user-agent']    .= '; Translations Updater - https://github.com/afragen/translations-updater';
 			$args['wp-rest-cache'] = array( 'tag' => 'github-updater' );
 		}
 
@@ -150,10 +154,14 @@ abstract class API extends Base {
 	/**
 	 * Returns repo cached data.
 	 *
+	 * @param string|bool $repo Repo name or false.
+	 *
 	 * @return array|bool false for expired cache
 	 */
-	protected function get_repo_cache() {
-		$repo      = isset( $this->type->repo ) ? $this->type->repo : 'ghu';
+	protected function get_repo_cache( $repo = false ) {
+		if ( ! $repo ) {
+			$repo = isset( $this->type->repo ) ? $this->type->repo : 'ghu';
+		}
 		$cache_key = 'ghu-' . md5( $repo );
 		$cache     = get_site_option( $cache_key );
 
@@ -167,13 +175,16 @@ abstract class API extends Base {
 	/**
 	 * Sets repo data for cache in site option.
 	 *
-	 * @param string $id       Data Identifier.
-	 * @param mixed  $response Data to be stored.
+	 * @param string      $id       Data Identifier.
+	 * @param mixed       $response Data to be stored.
+	 * @param string|bool $repo     Repo name or false.
 	 *
 	 * @return bool
 	 */
-	protected function set_repo_cache( $id, $response ) {
-		$repo      = isset( $this->type->repo ) ? $this->type->repo : 'ghu';
+	protected function set_repo_cache( $id, $response, $repo = false ) {
+		if ( ! $repo ) {
+			$repo = isset( $this->type->repo ) ? $this->type->repo : 'ghu';
+		}
 		$cache_key = 'ghu-' . md5( $repo );
 		$timeout   = '+' . self::$hours . ' hours';
 

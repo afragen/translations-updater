@@ -42,7 +42,7 @@ class Theme extends Base {
 		// Get details of installed themes.
 		$this->config = $this->get_theme_meta();
 
-		if ( empty( $this->config ) ) {
+		if ( null === $this->config ) {
 			return;
 		}
 	}

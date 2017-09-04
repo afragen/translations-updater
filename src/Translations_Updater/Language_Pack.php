@@ -46,6 +46,7 @@ class Language_Pack extends Base {
 	 */
 	public function __construct( $repo, Language_Pack_API $api ) {
 		if ( empty( $repo->languages ) ) {
+		if ( null === $repo->languages ) {
 			return;
 		}
 
