@@ -97,7 +97,7 @@ abstract class API extends Base {
 	 *
 	 * @param string $url
 	 *
-	 * @return boolean|object
+	 * @return boolean|\stdClass
 	 */
 	protected function api( $url ) {
 		add_filter( 'http_request_args', array( &$this, 'http_request_args' ), 10, 2 );
@@ -144,11 +144,7 @@ abstract class API extends Base {
 	 * @return bool true if invalid
 	 */
 	protected function validate_response( $response ) {
-		if ( empty( $response ) || isset( $response->message ) ) {
-			return true;
-		}
-
-		return false;
+		return empty( $response ) || isset( $response->message );
 	}
 
 	/**

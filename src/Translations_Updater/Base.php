@@ -30,23 +30,16 @@ class Base {
 	/**
 	 * Store details of all repositories that are installed.
 	 *
-	 * @var object $config
+	 * @var \stdClass $config
 	 */
 	protected $config;
 
 	/**
 	 * Class Object for API.
 	 *
-	 * @var object $repo_api
+	 * @var \stdClass $repo_api
 	 */
 	protected $repo_api;
-
-	/**
-	 * Class Object for Language Packs.
-	 *
-	 * @var object $languages
-	 */
-	protected $languages;
 
 	/**
 	 * Variable for setting update transient hours.
@@ -201,7 +194,7 @@ class Base {
 		}
 
 		self::$extra_headers = array_unique( array_merge( self::$extra_headers, $ghu_extra_headers ) );
-		$extra_headers       = array_merge( (array) $extra_headers, (array) $ghu_extra_headers );
+		$extra_headers       = array_merge( (array) $extra_headers, $ghu_extra_headers );
 		ksort( self::$extra_headers );
 
 		return $extra_headers;
