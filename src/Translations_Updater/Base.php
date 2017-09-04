@@ -171,7 +171,7 @@ class Base {
 	 */
 	public function forced_meta_update_plugins() {
 		if ( self::$load_repo_meta ) {
-			Plugin::instance()->get_remote_plugin_meta();
+			Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
 		}
 	}
 
@@ -180,7 +180,7 @@ class Base {
 	 */
 	public function forced_meta_update_themes() {
 		if ( self::$load_repo_meta ) {
-			Theme::instance()->get_remote_theme_meta();
+			Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
 		}
 	}
 

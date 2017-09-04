@@ -28,13 +28,6 @@ if ( ! defined( 'WPINC' ) ) {
 class Plugin extends Base {
 
 	/**
-	 * Plugin object.
-	 *
-	 * @var bool|Plugin
-	 */
-	private static $instance = false;
-
-	/**
 	 * Constructor.
 	 */
 	public function __construct() {
@@ -54,21 +47,6 @@ class Plugin extends Base {
 	 */
 	public function get_plugin_configs() {
 		return $this->config;
-	}
-
-	/**
-	 * The Plugin object can be created/obtained via this
-	 * method - this prevents unnecessary work in rebuilding the object and
-	 * querying to construct a list of categories, etc.
-	 *
-	 * @return object Plugin
-	 */
-	public static function instance() {
-		if ( false === self::$instance ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 
 	/**

@@ -28,13 +28,6 @@ if ( ! defined( 'WPINC' ) ) {
 class Theme extends Base {
 
 	/**
-	 * Theme object.
-	 *
-	 * @var bool|Theme
-	 */
-	private static $instance = false;
-
-	/**
 	 * Constructor.
 	 */
 	public function __construct() {
@@ -45,21 +38,6 @@ class Theme extends Base {
 		if ( null === $this->config ) {
 			return;
 		}
-	}
-
-	/**
-	 * The Theme object can be created/obtained via this
-	 * method - this prevents unnecessary work in rebuilding the object and
-	 * querying to construct a list of categories, etc.
-	 *
-	 * @return object Theme
-	 */
-	public static function instance() {
-		if ( false === self::$instance ) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
 	}
 
 	/**

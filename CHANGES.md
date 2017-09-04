@@ -1,4 +1,7 @@
+#### 0.9
+* added factory for creating singletons
 * fixed some linter issues
+
 #### 0.8 / 2017-08-03
 * fix reference to `Base::sanitize()`
 
