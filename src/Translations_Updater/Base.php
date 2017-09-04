@@ -91,7 +91,12 @@ class Base {
 		if ( isset( $_GET['force-check'] ) && ! class_exists( 'Fragen\\GitHub_Updater\\Base' ) ) {
 			$this->delete_all_cached_data();
 		}
+	}
 
+	/**
+	 * Let's get going.
+	 */
+	public function run() {
 		$this->load_hooks();
 	}
 
@@ -211,7 +216,8 @@ class Base {
 	public function get_remote_repo_meta( $repo ) {
 		self::$hours         = 6 + mt_rand( 0, 12 );
 		$this->{$repo->type} = $repo;
-		$this->languages     = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
+		$language_pack       = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
+		$language_pack->run();
 
 		$this->remove_hooks();
 

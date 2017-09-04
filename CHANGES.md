@@ -1,5 +1,6 @@
 #### 0.9
 * added factory for creating singletons
+* OOPified constructors to remove hooks, etc
 * fixed some linter issues
 
 #### 0.8 / 2017-08-03
