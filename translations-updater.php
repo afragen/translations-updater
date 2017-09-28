@@ -12,7 +12,7 @@
  * Plugin Name:       Translations Updater
  * Plugin URI:        https://github.com/afragen/translations-updater
  * Description:       A plugin to automatically update GitHub, Bitbucket, or GitLab hosted language packs.
- * Version:           0.9
+ * Version:           0.9.1
  * Author:            Andy Fragen
  * License:           MIT
  * License URI:       http://www.opensource.org/licenses/MIT
@@ -48,17 +48,17 @@ if ( version_compare( '5.3.0', PHP_VERSION, '>=' ) ) {
 load_plugin_textdomain( 'translations-updater' );
 
 // Plugin namespace root.
-$root = array( 'Fragen\\Translations_Updater' => __DIR__ . '/src/Translations_Updater' );
+$translations_updater['root'] = array( 'Fragen\\Translations_Updater' => __DIR__ . '/src/Translations_Updater' );
 
 // Add extra classes.
-$extra_classes = array();
+$translations_updater['extra_classes'] = array();
 
 // Load Autoloader.
 require_once __DIR__ . '/src/Autoloader.php';
-$loader = 'Fragen\\Autoloader';
-new $loader( $root, $extra_classes );
+$translations_updater['loader'] = 'Fragen\\Autoloader';
+new $translations_updater['loader']( $translations_updater['root'], $translations_updater['extra_classes'] );
 
 // Instantiate class Fragen\Translations_Updater.
-$instantiate = 'Fragen\\Translations_Updater\\Base';
-$base = new $instantiate;
-$base->run();
+$translations_updater['instantiate'] = 'Fragen\\Translations_Updater\\Base';
+$translations_updater['base']        = new $translations_updater['instantiate'];
+$translations_updater['base']->run();
