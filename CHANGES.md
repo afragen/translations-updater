@@ -1,3 +1,8 @@
+#### 1.0.0 / 2017-10-05
+* fixed to not create generic global variables accidentally
+* refactor to remove most constructors
+* changed name of options from `ghu-*` to `tu-*`
+
 #### 0.9
 * added factory for creating singletons
 * OOPified constructors to remove hooks, etc

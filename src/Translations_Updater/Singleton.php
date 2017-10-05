@@ -22,7 +22,7 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * A static proxy for creating Singletons from passed class names.
  *
- * @package Fragen\GitHub_Updater
+ * @package Fragen\Translations_Updater
  */
 final class Singleton {
 
