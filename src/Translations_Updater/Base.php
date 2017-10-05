@@ -284,23 +284,6 @@ class Base {
 	}
 
 	/**
-	 * Delete all `ghu-` prefixed data from options table.
-	 *
-	 * @return bool
-	 */
-	public function delete_all_cached_data() {
-		global $wpdb;
-
-		$table         = is_multisite() ? $wpdb->base_prefix . 'sitemeta' : $wpdb->base_prefix . 'options';
-		$column        = is_multisite() ? 'meta_key' : 'option_name';
-		$delete_string = 'DELETE FROM ' . $table . ' WHERE ' . $column . ' LIKE %s LIMIT 1000';
-
-		$wpdb->query( $wpdb->prepare( $delete_string, array( '%ghu-%' ) ) );
-
-		return true;
-	}
-
-	/**
 	 * Parse Languages headers for plugins and themes.
 	 *
 	 * @param array           $header

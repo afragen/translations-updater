@@ -93,8 +93,6 @@ abstract class API extends Base {
 	 * Call the API and return a json decoded body.
 	 * Create error messages.
 	 *
-	 * @see http://developer.github.com/v3/
-	 *
 	 * @param string $url
 	 *
 	 * @return boolean|\stdClass
@@ -156,9 +154,9 @@ abstract class API extends Base {
 	 */
 	protected function get_repo_cache( $repo = false ) {
 		if ( ! $repo ) {
-			$repo = isset( $this->type->repo ) ? $this->type->repo : 'ghu';
+			$repo = isset( $this->type->repo ) ? $this->type->repo : 'tu';
 		}
-		$cache_key = 'ghu-' . md5( $repo );
+		$cache_key = 'tu-' . md5( $repo );
 		$cache     = get_site_option( $cache_key );
 
 		if ( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
@@ -179,9 +177,9 @@ abstract class API extends Base {
 	 */
 	protected function set_repo_cache( $id, $response, $repo = false ) {
 		if ( ! $repo ) {
-			$repo = isset( $this->type->repo ) ? $this->type->repo : 'ghu';
+			$repo = isset( $this->type->repo ) ? $this->type->repo : 'tu';
 		}
-		$cache_key = 'ghu-' . md5( $repo );
+		$cache_key = 'tu-' . md5( $repo );
 		$timeout   = '+' . self::$hours . ' hours';
 
 		$this->response['timeout'] = strtotime( $timeout, current_time( 'timestamp' ) );
