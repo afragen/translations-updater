@@ -84,16 +84,6 @@ class Base {
 	protected static $load_repo_meta;
 
 	/**
-	 * Constructor.
-	 * Loads options to private static variable.
-	 */
-	public function __construct() {
-		if ( isset( $_GET['force-check'] ) && ! class_exists( 'Fragen\\GitHub_Updater\\Base' ) ) {
-			$this->delete_all_cached_data();
-		}
-	}
-
-	/**
 	 * Let's get going.
 	 */
 	public function run() {

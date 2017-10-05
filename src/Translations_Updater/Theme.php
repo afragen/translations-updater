@@ -31,8 +31,6 @@ class Theme extends Base {
 	 * Constructor.
 	 */
 	public function __construct() {
-		parent::__construct();
-
 		// Get details of installed themes.
 		$this->config = $this->get_theme_meta();
 
