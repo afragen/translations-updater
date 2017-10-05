@@ -204,7 +204,7 @@ class Base {
 	 * @return bool
 	 */
 	public function get_remote_repo_meta( $repo ) {
-		self::$hours         = 6 + mt_rand( 0, 12 );
+		self::$hours         = 12;
 		$this->{$repo->type} = $repo;
 		$language_pack       = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
 		$language_pack->run();
