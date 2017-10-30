@@ -22,7 +22,14 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @package Fragen\Translations_Updater
  */
-abstract class API extends Base {
+class API {
+
+	/**
+	 * Variable for setting update transient hours.
+	 *
+	 * @var integer
+	 */
+	protected static $hours = 12;
 
 	/**
 	 * Variable to hold all repository remote info.
@@ -30,15 +37,6 @@ abstract class API extends Base {
 	 * @var array
 	 */
 	protected $response = array();
-
-	/**
-	 * Function to get language pack JSON.
-	 *
-	 * @param $headers
-	 *
-	 * @return mixed
-	 */
-	abstract public function get_language_pack( $headers );
 
 	/**
 	 * Adds custom user agent for Translations Updater.
@@ -51,8 +49,7 @@ abstract class API extends Base {
 	public static function http_request_args( $args, $url ) {
 		$args['sslverify'] = true;
 		if ( false === strpos( $args['user-agent'], 'Translations Updater' ) ) {
-			$args['user-agent']    .= '; Translations Updater - https://github.com/afragen/translations-updater';
-			$args['wp-rest-cache'] = array( 'tag' => 'github-updater' );
+			$args['user-agent'] .= '; Translations Updater - https://github.com/afragen/translations-updater';
 		}
 
 		return $args;

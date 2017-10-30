@@ -42,13 +42,6 @@ class Base {
 	protected $repo_api;
 
 	/**
-	 * Variable for setting update transient hours.
-	 *
-	 * @var integer $hours
-	 */
-	protected static $hours;
-
-	/**
 	 * Variable for holding extra theme and plugin headers.
 	 *
 	 * @var array $extra_headers
@@ -204,7 +197,6 @@ class Base {
 	 * @return bool
 	 */
 	public function get_remote_repo_meta( $repo ) {
-		self::$hours         = 12;
 		$this->{$repo->type} = $repo;
 		$language_pack       = new Language_Pack( $repo, new Language_Pack_API( $repo ) );
 		$language_pack->run();

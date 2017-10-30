@@ -1,3 +1,6 @@
+#### 1.1.0 / 2017-10-30
+* refactored `class API` to not be dependent on `class Base`
+
 #### 1.0.0 / 2017-10-05
 * fixed to not create generic global variables accidentally
 * refactor to remove most constructors
