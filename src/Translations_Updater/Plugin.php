@@ -25,12 +25,17 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  * @author  Andy Fragen
  */
-class Plugin extends Base {
+class Plugin {
+	use Base;
 
 	/**
 	 * Constructor.
+	 *
+	 * @param array $extra_headers
 	 */
-	public function __construct() {
+	public function __construct( $extra_headers ) {
+		self::$extra_headers = ! empty( self::$extra_headers ) ? self::$extra_headers : $extra_headers;
+
 		// Get details of installed plugins.
 		$this->config = $this->get_plugin_meta();
 

@@ -22,7 +22,8 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @package Fragen\Translations_Updater
  */
-class API {
+trait API {
+	use Base;
 
 	/**
 	 * Variable for setting update transient hours.

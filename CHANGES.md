@@ -1,3 +1,6 @@
+#### [unreleased]
+* refactored for traits, now requires PHP 5.4
+
 #### 1.1.0 / 2017-10-30
 * refactored `class API` to not be dependent on `class Base`
 

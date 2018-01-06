@@ -15,7 +15,8 @@ namespace Fragen\Translations_Updater;
  *
  * @package Fragen\Translations_Updater
  */
-class Language_Pack_API extends API {
+class Language_Pack_API {
+	use API;
 
 	/**
 	 * Constructor.

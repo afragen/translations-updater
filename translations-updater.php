@@ -21,7 +21,7 @@
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/translations-updater
  * Requires WP:       4.6
- * Requires PHP:      5.3
+ * Requires PHP:      5.4
  */
 
 /*
@@ -32,11 +32,11 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( version_compare( '5.3.0', PHP_VERSION, '>=' ) ) {
+if ( version_compare( '5.4.0', PHP_VERSION, '>=' ) ) {
 	?>
 	<div class="error notice is-dismissible">
 		<p>
-			<?php esc_html_e( 'Translations Updater cannot run on PHP versions older than 5.3.0. Please contact your hosting provider to update your site.', 'translations-updater' ); ?>
+			<?php printf( esc_html__( 'Translations Updater cannot run on PHP versions older than %s. Please contact your hosting provider to update your site.', 'translations-updater' ), '5.4.0' ); ?>
 		</p>
 	</div>
 	<?php
@@ -59,6 +59,6 @@ $translations_updater['loader'] = 'Fragen\\Autoloader';
 new $translations_updater['loader']( $translations_updater['root'], $translations_updater['extra_classes'] );
 
 // Instantiate class Fragen\Translations_Updater.
-$translations_updater['instantiate'] = 'Fragen\\Translations_Updater\\Base';
-$translations_updater['base']        = new $translations_updater['instantiate'];
-$translations_updater['base']->run();
+$translations_updater['instantiate'] = 'Fragen\\Translations_Updater\\Init';
+$translations_updater['init']        = new $translations_updater['instantiate'];
+$translations_updater['init']->run();

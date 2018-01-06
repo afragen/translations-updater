@@ -3,7 +3,7 @@
 Contributors: afragen
 Tags: plugin, theme, language pack, updater
 Requires at least: 4.6
-Requires PHP: 5.3
+Requires PHP: 5.4
 Tested up to: 4.9
 Stable tag: master
 Donate link: http://thefragens.com/translations-updater-donate

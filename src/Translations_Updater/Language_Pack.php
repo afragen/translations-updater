@@ -22,7 +22,8 @@ if ( ! defined( 'WPINC' ) ) {
  *
  * @package Fragen\Translations_Updater
  */
-class Language_Pack extends Base {
+class Language_Pack {
+	use Base;
 
 	/**
 	 * Variable containing the plugin/theme object.
