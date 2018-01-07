@@ -119,7 +119,7 @@ trait Base {
 	 */
 	public function forced_meta_update_plugins() {
 		if ( self::$can_user_update ) {
-			Singleton::get_instance( 'Plugin', self::$extra_headers )->get_remote_plugin_meta();
+			Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
 		}
 	}
 
@@ -128,7 +128,7 @@ trait Base {
 	 */
 	public function forced_meta_update_themes() {
 		if ( self::$can_user_update ) {
-			Singleton::get_instance( 'Theme', self::$extra_headers )->get_remote_theme_meta();
+			Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
 		}
 	}
 
@@ -139,7 +139,7 @@ trait Base {
 	 *
 	 * @return array
 	 */
-	public function add_headers( $extra_headers ) {
+	public function add_headers( $extra_headers = null ) {
 		$ghu_extra_headers = array();
 
 		foreach ( self::$git_servers as $server ) {

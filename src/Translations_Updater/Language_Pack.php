@@ -43,6 +43,7 @@ class Language_Pack {
 			return;
 		}
 
+		$this->add_headers();
 		$this->repo     = $repo;
 		$this->repo_api = $api;
 	}

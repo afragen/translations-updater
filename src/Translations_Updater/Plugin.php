@@ -30,13 +30,10 @@ class Plugin {
 
 	/**
 	 * Constructor.
-	 *
-	 * @param array $extra_headers
 	 */
-	public function __construct( $extra_headers ) {
-		self::$extra_headers = ! empty( self::$extra_headers ) ? self::$extra_headers : $extra_headers;
-
-		// Get details of installed plugins.
+	public function __construct() {
+		// Ensure self::$extra_headers is set and get details of installed plugins.
+		$this->add_headers();
 		$this->config = $this->get_plugin_meta();
 
 		if ( null === $this->config ) {
