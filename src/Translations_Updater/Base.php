@@ -92,7 +92,7 @@ trait Base {
 	 * @return bool
 	 */
 	public function load() {
-		if ( ! Singleton::get_instance( 'Init' )->can_update() ) {
+		if ( ! \Fragen\Singleton::get_instance( 'Init'  )->can_update() ) {
 			return false;
 		}
 
@@ -119,7 +119,7 @@ trait Base {
 	 */
 	public function forced_meta_update_plugins() {
 		if ( self::$can_user_update ) {
-			Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
+			\Fragen\Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
 		}
 	}
 
@@ -128,7 +128,7 @@ trait Base {
 	 */
 	public function forced_meta_update_themes() {
 		if ( self::$can_user_update ) {
-			Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
+			\Fragen\Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
 		}
 	}
 
