@@ -26,7 +26,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @author  Andy Fragen
  */
 trait Base {
-	use API;
 
 	/**
 	 * Store details of all repositories that are installed.
