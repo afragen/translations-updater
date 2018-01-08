@@ -69,14 +69,6 @@ trait Base {
 	);
 
 	/**
-	 * Variable to hold boolean to check user privileges.
-	 *
-	 * @var bool
-	 */
-	protected static $can_user_update;
-
-
-	/**
 	 * Remove hooks after use.
 	 */
 	public function remove_hooks() {
@@ -117,18 +109,14 @@ trait Base {
 	 * Performs actual plugin metadata fetching.
 	 */
 	public function forced_meta_update_plugins() {
-		if ( self::$can_user_update ) {
-			\Fragen\Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
-		}
+		\Fragen\Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
 	}
 
 	/**
 	 * Performs actual theme metadata fetching.
 	 */
 	public function forced_meta_update_themes() {
-		if ( self::$can_user_update ) {
-			\Fragen\Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
-		}
+		\Fragen\Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
 	}
 
 	/**
