@@ -43,7 +43,7 @@ if ( ! class_exists( 'Fragen\\Singleton' ) ) {
 				$reflection = new \ReflectionClass( $class );
 				$class      = $reflection->getNamespaceName() . '\\' . $class_name;
 			} catch ( \ReflectionException $Exception ) {
-				wp_die( '<table>' . $Exception->xdebug_message . '</table>' );
+				die( '<table>' . $Exception->xdebug_message . '</table>' );
 			}
 
 			if ( null === $instance || ! isset( $instance[ $class ] ) ) {
