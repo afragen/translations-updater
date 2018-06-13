@@ -36,7 +36,10 @@ if ( version_compare( '5.4.0', PHP_VERSION, '>=' ) ) {
 	?>
 	<div class="error notice is-dismissible">
 		<p>
-			<?php printf( esc_html__( 'Translations Updater cannot run on PHP versions older than %s. Please contact your hosting provider to update your site.', 'translations-updater' ), '5.4.0' ); ?>
+			<?php
+			/* translators: %s: version number */
+			printf( esc_html__( 'Translations Updater cannot run on PHP versions older than %s. Please contact your hosting provider to update your site.', 'translations-updater' ), '5.4.0' );
+			?>
 		</p>
 	</div>
 	<?php
