@@ -82,7 +82,7 @@ class Language_Pack_API {
 				break;
 			case 'gitlab':
 				$id       = urlencode( $headers['owner'] . '/' . $headers['repo'] );
-				$response = $this->api( '/projects/' . $id . '/repository/files?file_path=language-pack.json' );
+				$response = $this->api( '/projects/' . $id . '/repository/files/language-pack.json' );
 				$contents = base64_decode( $response->content );
 				$response = json_decode( $contents );
 				break;
