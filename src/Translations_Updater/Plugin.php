@@ -67,8 +67,8 @@ class Plugin {
 			$git_plugin = array();
 
 			if ( empty( $headers['GitHub Languages'] ) &&
-			     empty( $headers['Bitbucket Languages'] ) &&
-			     empty( $headers['GitLab Languages'] )
+				empty( $headers['Bitbucket Languages'] ) &&
+				empty( $headers['GitLab Languages'] )
 			) {
 				continue;
 			}

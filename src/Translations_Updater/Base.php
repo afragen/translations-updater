@@ -83,7 +83,7 @@ trait Base {
 	 * @return bool
 	 */
 	public function load() {
-		if ( ! \Fragen\Singleton::get_instance( 'Init'  )->can_update() ) {
+		if ( ! \Fragen\Singleton::get_instance( 'Init', $this )->can_update() ) {
 			return false;
 		}
 
@@ -109,14 +109,14 @@ trait Base {
 	 * Performs actual plugin metadata fetching.
 	 */
 	public function forced_meta_update_plugins() {
-		\Fragen\Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
+		\Fragen\Singleton::get_instance( 'Plugin', $this )->get_remote_plugin_meta();
 	}
 
 	/**
 	 * Performs actual theme metadata fetching.
 	 */
 	public function forced_meta_update_themes() {
-		\Fragen\Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
+		\Fragen\Singleton::get_instance( 'Theme', $this )->get_remote_theme_meta();
 	}
 
 	/**
@@ -234,7 +234,6 @@ trait Base {
 
 		$header['languages'] = null;
 
-
 		if ( $headers instanceof \WP_Theme ) {
 			$theme   = $headers;
 			$headers = array();
@@ -246,7 +245,7 @@ trait Base {
 				$headers[ $repo_parts[ $part ] ] = $theme->get( $repo_parts[ $part ] );
 			}
 			if ( array_key_exists( $repo_parts[ $part ], $headers ) &&
-			     ! empty( $headers[ $repo_parts[ $part ] ] )
+				! empty( $headers[ $repo_parts[ $part ] ] )
 			) {
 				switch ( $part ) {
 					case 'languages':

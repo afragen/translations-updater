@@ -76,17 +76,19 @@ class Language_Pack {
 		}
 
 		if ( 'pre_set_site_transient_update_plugins' === current_filter() ) {
-			$repos        = \Fragen\Singleton::get_instance( 'Plugin' )->get_plugin_configs();
+			$repos        = \Fragen\Singleton::get_instance( 'Plugin', $this )->get_plugin_configs();
 			$translations = wp_get_installed_translations( 'plugins' );
 		}
 		if ( 'pre_set_site_transient_update_themes' === current_filter() ) {
-			$repos        = \Fragen\Singleton::get_instance( 'Theme' )->get_theme_configs();
+			$repos        = \Fragen\Singleton::get_instance( 'Theme', $this )->get_theme_configs();
 			$translations = wp_get_installed_translations( 'themes' );
 		}
 
-		$repos = array_filter( $repos, function( $e ) {
-			return isset( $e->language_packs );
-		} );
+		$repos = array_filter(
+			$repos, function( $e ) {
+				return isset( $e->language_packs );
+			}
+		);
 
 		foreach ( $repos as $repo ) {
 			foreach ( $locales as $locale ) {

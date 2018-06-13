@@ -67,7 +67,6 @@ class Theme {
 				$header   = null;
 				$repo_uri = $theme->get( $value );
 
-
 				if ( empty( $repo_uri ) || false === stripos( $value, 'Languages' ) ) {
 					continue;
 				}
