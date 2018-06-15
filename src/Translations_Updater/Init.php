@@ -10,7 +10,6 @@
 
 namespace Fragen\Translations_Updater;
 
-
 /**
  * Class Init
  *

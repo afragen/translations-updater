@@ -33,16 +33,14 @@ if ( ! defined( 'WPINC' ) ) {
 }
 
 if ( version_compare( '5.4.0', PHP_VERSION, '>=' ) ) {
-	?>
-	<div class="error notice is-dismissible">
-		<p>
-			<?php
-			/* translators: %s: version number */
-			printf( esc_html__( 'Translations Updater cannot run on PHP versions older than %s. Please contact your hosting provider to update your site.', 'translations-updater' ), '5.4.0' );
-			?>
-		</p>
-	</div>
-	<?php
+	echo '<div class="error notice is-dismissible"><p>';
+	printf(
+		/* translators: 1: minimum PHP version required, 2: Upgrade PHP URL */
+		wp_kses_post( __( 'Translations Updater cannot run on PHP versions older than %1$s. <a href="%2$s">Learn about upgrading your PHP.</a>', 'translations-updater' ) ),
+		'5.4.0',
+		esc_url( __( 'https://wordpress.org/support/upgrade-php/' ) )
+	);
+	echo '</p></div>';
 
 	return false;
 }
@@ -63,5 +61,5 @@ new $translations_updater['loader']( $translations_updater['root'], $translation
 
 // Instantiate class Fragen\Translations_Updater.
 $translations_updater['instantiate'] = 'Fragen\\Translations_Updater\\Init';
-$translations_updater['init']        = new $translations_updater['instantiate'];
+$translations_updater['init']        = new $translations_updater['instantiate']();
 $translations_updater['init']->run();
