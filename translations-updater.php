@@ -12,7 +12,7 @@
  * Plugin Name:       Translations Updater
  * Plugin URI:        https://github.com/afragen/translations-updater
  * Description:       A plugin to automatically update GitHub, Bitbucket, or GitLab hosted language packs.
- * Version:           1.1.0
+ * Version:           2.2.0
  * Author:            Andy Fragen
  * License:           MIT
  * License URI:       http://www.opensource.org/licenses/MIT
@@ -21,7 +21,7 @@
  * Network:           true
  * GitHub Plugin URI: https://github.com/afragen/translations-updater
  * Requires WP:       4.6
- * Requires PHP:      5.3
+ * Requires PHP:      5.4
  */
 
 /*
@@ -32,14 +32,15 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-if ( version_compare( '5.3.0', PHP_VERSION, '>=' ) ) {
-	?>
-	<div class="error notice is-dismissible">
-		<p>
-			<?php esc_html_e( 'Translations Updater cannot run on PHP versions older than 5.3.0. Please contact your hosting provider to update your site.', 'translations-updater' ); ?>
-		</p>
-	</div>
-	<?php
+if ( version_compare( '5.4.0', PHP_VERSION, '>=' ) ) {
+	echo '<div class="error notice is-dismissible"><p>';
+	printf(
+		/* translators: 1: minimum PHP version required, 2: Upgrade PHP URL */
+		wp_kses_post( __( 'Translations Updater cannot run on PHP versions older than %1$s. <a href="%2$s">Learn about upgrading your PHP.</a>', 'translations-updater' ) ),
+		'5.4.0',
+		esc_url( __( 'https://wordpress.org/support/upgrade-php/' ) )
+	);
+	echo '</p></div>';
 
 	return false;
 }
@@ -51,7 +52,7 @@ load_plugin_textdomain( 'translations-updater' );
 $translations_updater['root'] = array( 'Fragen\\Translations_Updater' => __DIR__ . '/src/Translations_Updater' );
 
 // Add extra classes.
-$translations_updater['extra_classes'] = array();
+$translations_updater['extra_classes'] = array( 'Fragen\\Singleton' => __DIR__ . '/src/Singleton.php' );
 
 // Load Autoloader.
 require_once __DIR__ . '/src/Autoloader.php';
@@ -59,6 +60,6 @@ $translations_updater['loader'] = 'Fragen\\Autoloader';
 new $translations_updater['loader']( $translations_updater['root'], $translations_updater['extra_classes'] );
 
 // Instantiate class Fragen\Translations_Updater.
-$translations_updater['instantiate'] = 'Fragen\\Translations_Updater\\Base';
-$translations_updater['base']        = new $translations_updater['instantiate'];
-$translations_updater['base']->run();
+$translations_updater['instantiate'] = 'Fragen\\Translations_Updater\\Init';
+$translations_updater['init']        = new $translations_updater['instantiate']();
+$translations_updater['init']->run();

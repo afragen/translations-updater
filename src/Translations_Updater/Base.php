@@ -25,7 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  * @author  Andy Fragen
  */
-class Base {
+trait Base {
 
 	/**
 	 * Store details of all repositories that are installed.
@@ -69,33 +69,6 @@ class Base {
 	);
 
 	/**
-	 * Variable to hold boolean to load remote meta.
-	 * Checks user privileges and when to load.
-	 *
-	 * @var bool $load_repo_meta
-	 */
-	protected static $load_repo_meta;
-
-	/**
-	 * Let's get going.
-	 */
-	public function run() {
-		$this->load_hooks();
-	}
-
-	/**
-	 * Load relevant action/filter hooks.
-	 * Use 'init' hook for user capabilities.
-	 */
-	protected function load_hooks() {
-		add_action( 'init', array( &$this, 'init' ) );
-		add_action( 'init', array( &$this, 'background_update' ) );
-
-		add_filter( 'extra_theme_headers', array( &$this, 'add_headers' ) );
-		add_filter( 'extra_plugin_headers', array( &$this, 'add_headers' ) );
-	}
-
-	/**
 	 * Remove hooks after use.
 	 */
 	public function remove_hooks() {
@@ -109,30 +82,15 @@ class Base {
 	 *
 	 * @return bool
 	 */
-	public function init() {
-		global $pagenow;
-
-		$load_multisite       = ( is_network_admin() && current_user_can( 'manage_network' ) );
-		$load_single_site     = ( ! is_multisite() && current_user_can( 'manage_options' ) );
-		self::$load_repo_meta = $load_multisite || $load_single_site;
-
-		// Set $force_meta_update = true on appropriate admin pages.
-		$force_meta_update = false;
-		$admin_pages       = array(
-			'plugins.php',
-			'themes.php',
-			'update-core.php',
-			'update.php',
-		);
-
-		if ( in_array( $pagenow, array_unique( $admin_pages ), true ) ) {
-			$force_meta_update = true;
+	public function load() {
+		if ( ! \Fragen\Singleton::get_instance( 'Init', $this )->can_update() ) {
+			return false;
 		}
 
-		if ( $force_meta_update ) {
+		if ( self::$can_user_update ) {
 			$this->forced_meta_update_plugins();
 		}
-		if ( $force_meta_update ) {
+		if ( self::$can_user_update ) {
 			$this->forced_meta_update_themes();
 		}
 
@@ -151,18 +109,14 @@ class Base {
 	 * Performs actual plugin metadata fetching.
 	 */
 	public function forced_meta_update_plugins() {
-		if ( self::$load_repo_meta ) {
-			Singleton::get_instance( 'Plugin' )->get_remote_plugin_meta();
-		}
+		\Fragen\Singleton::get_instance( 'Plugin', $this )->get_remote_plugin_meta();
 	}
 
 	/**
 	 * Performs actual theme metadata fetching.
 	 */
 	public function forced_meta_update_themes() {
-		if ( self::$load_repo_meta ) {
-			Singleton::get_instance( 'Theme' )->get_remote_theme_meta();
-		}
+		\Fragen\Singleton::get_instance( 'Theme', $this )->get_remote_theme_meta();
 	}
 
 	/**
@@ -172,7 +126,7 @@ class Base {
 	 *
 	 * @return array
 	 */
-	public function add_headers( $extra_headers ) {
+	public function add_headers( $extra_headers = null ) {
 		$ghu_extra_headers = array();
 
 		foreach ( self::$git_servers as $server ) {
@@ -280,7 +234,6 @@ class Base {
 
 		$header['languages'] = null;
 
-
 		if ( $headers instanceof \WP_Theme ) {
 			$theme   = $headers;
 			$headers = array();
@@ -292,7 +245,7 @@ class Base {
 				$headers[ $repo_parts[ $part ] ] = $theme->get( $repo_parts[ $part ] );
 			}
 			if ( array_key_exists( $repo_parts[ $part ], $headers ) &&
-			     ! empty( $headers[ $repo_parts[ $part ] ] )
+				! empty( $headers[ $repo_parts[ $part ] ] )
 			) {
 				switch ( $part ) {
 					case 'languages':

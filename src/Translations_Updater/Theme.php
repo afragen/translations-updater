@@ -25,13 +25,15 @@ if ( ! defined( 'WPINC' ) ) {
  * @package   Fragen\Translations_Updater
  * @author    Andy Fragen
  */
-class Theme extends Base {
+class Theme {
+	use Base;
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		// Get details of installed themes.
+		// Ensure self::$extra_headers is set and get details of installed plugins.
+		$this->add_headers();
 		$this->config = $this->get_theme_meta();
 
 		if ( null === $this->config ) {
@@ -64,7 +66,6 @@ class Theme extends Base {
 			foreach ( (array) self::$extra_headers as $value ) {
 				$header   = null;
 				$repo_uri = $theme->get( $value );
-
 
 				if ( empty( $repo_uri ) || false === stripos( $value, 'Languages' ) ) {
 					continue;

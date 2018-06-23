@@ -25,13 +25,15 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  * @author  Andy Fragen
  */
-class Plugin extends Base {
+class Plugin {
+	use Base;
 
 	/**
 	 * Constructor.
 	 */
 	public function __construct() {
-		// Get details of installed plugins.
+		// Ensure self::$extra_headers is set and get details of installed plugins.
+		$this->add_headers();
 		$this->config = $this->get_plugin_meta();
 
 		if ( null === $this->config ) {
@@ -65,8 +67,8 @@ class Plugin extends Base {
 			$git_plugin = array();
 
 			if ( empty( $headers['GitHub Languages'] ) &&
-			     empty( $headers['Bitbucket Languages'] ) &&
-			     empty( $headers['GitLab Languages'] )
+				empty( $headers['Bitbucket Languages'] ) &&
+				empty( $headers['GitLab Languages'] )
 			) {
 				continue;
 			}

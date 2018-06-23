@@ -15,7 +15,8 @@ namespace Fragen\Translations_Updater;
  *
  * @package Fragen\Translations_Updater
  */
-class Language_Pack_API extends API {
+class Language_Pack_API {
+	use API;
 
 	/**
 	 * Constructor.
@@ -81,7 +82,7 @@ class Language_Pack_API extends API {
 				break;
 			case 'gitlab':
 				$id       = urlencode( $headers['owner'] . '/' . $headers['repo'] );
-				$response = $this->api( '/projects/' . $id . '/repository/files?file_path=language-pack.json' );
+				$response = $this->api( '/projects/' . $id . '/repository/files/language-pack.json' );
 				$contents = base64_decode( $response->content );
 				$response = json_decode( $contents );
 				break;
