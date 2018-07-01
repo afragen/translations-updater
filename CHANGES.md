@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.2.1 / 2018-07-01
+* updated readme(s)
+
 #### 2.2.0 / 2018-06-23
 * refactored for traits, now requires PHP 5.4
 * updated for new `Singleton` factory
