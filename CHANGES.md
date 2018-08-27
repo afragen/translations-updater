@@ -1,4 +1,5 @@
 #### [unreleased]
+* updated error handling in Singleton factory
 
 #### 2.2.1 / 2018-07-01
 * updated readme(s)
