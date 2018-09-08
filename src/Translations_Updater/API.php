@@ -39,33 +39,15 @@ trait API {
 	protected $response = array();
 
 	/**
-	 * Adds custom user agent for Translations Updater.
-	 *
-	 * @param array  $args Existing HTTP Request arguments.
-	 * @param string $url  URL being passed.
-	 *
-	 * @return array Amended HTTP Request arguments.
-	 */
-	public static function http_request_args( $args, $url ) {
-		$args['sslverify'] = true;
-		if ( false === strpos( $args['user-agent'], 'Translations Updater' ) ) {
-			$args['user-agent'] .= '; Translations Updater - https://github.com/afragen/translations-updater';
-		}
-
-		return $args;
-	}
-
-	/**
 	 * Return repo data for API calls.
 	 *
 	 * @return array
 	 */
 	protected function return_repo_type() {
-		$type        = explode( '_', $this->type->type );
 		$arr         = array();
-		$arr['type'] = $type[1];
+		$arr['type'] = $this->repo->type;
 
-		switch ( $type[0] ) {
+		switch ( $this->repo->git ) {
 			case 'github':
 				$arr['repo']          = 'github';
 				$arr['base_uri']      = 'https://api.github.com';
@@ -81,6 +63,12 @@ trait API {
 				$arr['base_uri']      = 'https://gitlab.com/api/v4';
 				$arr['base_download'] = 'https://gitlab.com';
 				break;
+			case 'gitea':
+				$arr['repo'] = 'gitea';
+				// TODO: make sure this works
+				$arr['base_uri']      = $this->repo->enterprise . '/api/v1';
+				$arr['base_download'] = $this->repo->enterprise;
+				break;
 		}
 
 		return $arr;
@@ -88,15 +76,12 @@ trait API {
 
 	/**
 	 * Call the API and return a json decoded body.
-	 * Create error messages.
 	 *
 	 * @param string $url
 	 *
 	 * @return boolean|\stdClass
 	 */
 	protected function api( $url ) {
-		add_filter( 'http_request_args', array( &$this, 'http_request_args' ), 10, 2 );
-
 		$response = wp_remote_get( $this->get_api_url( $url ) );
 
 		if ( is_wp_error( $response ) ) {
@@ -121,6 +106,7 @@ trait API {
 		switch ( $type['repo'] ) {
 			case 'github':
 			case 'bitbucket':
+			case 'gitea':
 				break;
 			case 'gitlab':
 				$endpoint = add_query_arg( 'ref', 'master', $endpoint );
@@ -151,7 +137,7 @@ trait API {
 	 */
 	protected function get_repo_cache( $repo = false ) {
 		if ( ! $repo ) {
-			$repo = isset( $this->type->repo ) ? $this->type->repo : 'tu';
+			$repo = isset( $this->type->slug ) ? $this->type->slug : 'tu';
 		}
 		$cache_key = 'tu-' . md5( $repo );
 		$cache     = get_site_option( $cache_key );
@@ -174,7 +160,7 @@ trait API {
 	 */
 	protected function set_repo_cache( $id, $response, $repo = false ) {
 		if ( ! $repo ) {
-			$repo = isset( $this->type->repo ) ? $this->type->repo : 'tu';
+			$repo = isset( $this->type->slug ) ? $this->type->slug : 'tu';
 		}
 		$cache_key = 'tu-' . md5( $repo );
 		$timeout   = '+' . self::$hours . ' hours';
