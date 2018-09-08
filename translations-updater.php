@@ -5,7 +5,7 @@
  * @package   Fragen\Translations_Updater
  * @author    Andy Fragen
  * @license   MIT
- * @link      https://github.com/afragen/edd-translations-updater
+ * @link      https://github.com/afragen/translations-updater
  */
 
 /**

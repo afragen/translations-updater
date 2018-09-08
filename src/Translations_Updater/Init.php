@@ -1,6 +1,6 @@
 <?php
 /**
- * EDD Translations Updater
+ * Translations Updater
  *
  * @package   Fragen\Translations_Updater
  * @author    Andy Fragen

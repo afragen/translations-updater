@@ -2,8 +2,8 @@
 # Translations Updater
 
 * Contributors: [Andy Fragen](https://github.com/afragen)
-* Tags: edd software licensing, language pack, updater
-* Requires at least: 4.6
+* Tags: composer, edd software licensing, language pack, updater
+* Requires at least: 4.8
 * Requires PHP: 5.6
 * Tested up to: 4.9
 * Stable tag: master
