@@ -2,7 +2,7 @@
 # Translations Updater
 
 * Contributors: [Andy Fragen](https://github.com/afragen)
-* Tags: composer, edd software licensing, language pack, updater
+* Tags: composer, plugins, themes, edd software licensing, language pack, updater
 * Requires at least: 4.8
 * Requires PHP: 5.6
 * Tested up to: 4.9
@@ -26,8 +26,7 @@ Add `require_once __DIR__ . '/vendor/autoload.php';` to main plugin file or them
 A configuration array with the following format is needed.
 
 ```php
-
-add_action('admin_init', function(){
+add_action( 'admin_init', function() {
 	$config = [
 		'git'       => '{github|bitbucket|gitlab|gitea}',
 		'type'      => '{plugin|theme}',
@@ -37,7 +36,7 @@ add_action('admin_init', function(){
 	];
 
 	( new \Fragen\Translations_Updater\Init() )->run( $config );
-});
+} );
 ```
 
 ## EDD Software Licensing Usage
