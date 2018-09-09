@@ -128,6 +128,11 @@ class Language_Pack_API {
 				$package = [ 'https://gitlab.com', $headers['owner'], $headers['repo'], 'raw/master' ];
 				$package = implode( '/', $package ) . $locale->package;
 				break;
+			case 'gitea':
+				// TODO: make sure this works
+				$package = [ $headers['uri'] ];
+				$package = implode( '/', $package ) . $local->package;
+				break;
 		}
 
 		return $package;
