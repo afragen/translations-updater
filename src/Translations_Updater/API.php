@@ -142,7 +142,7 @@ trait API {
 		$cache_key = 'tu-' . md5( $repo );
 		$cache     = get_site_option( $cache_key );
 
-		if ( empty( $cache['timeout'] ) || current_time( 'timestamp' ) > $cache['timeout'] ) {
+		if ( empty( $cache['timeout'] ) || time() > $cache['timeout'] ) {
 			return false;
 		}
 
@@ -165,7 +165,7 @@ trait API {
 		$cache_key = 'tu-' . md5( $repo );
 		$timeout   = '+' . self::$hours . ' hours';
 
-		$this->response['timeout'] = strtotime( $timeout, current_time( 'timestamp' ) );
+		$this->response['timeout'] = strtotime( $timeout );
 		$this->response[ $id ]     = $response;
 
 		update_site_option( $cache_key, $this->response );
