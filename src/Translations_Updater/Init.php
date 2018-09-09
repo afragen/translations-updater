@@ -34,8 +34,7 @@ class Init {
 		global $pagenow;
 
 		$user_can_update = current_user_can( 'update_plugins' ) && current_user_can( 'update_themes' );
-
-		$admin_pages = array(
+		$admin_pages     = array(
 			'plugins.php',
 			'themes.php',
 			'update-core.php',

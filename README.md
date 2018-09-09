@@ -19,7 +19,7 @@ This framework allows for decoupled language pack updates for your plugins or th
 
 ## Usage
 
-Install via Composer, `composer require afragen/translations-updater`.
+Install via Composer, `composer require afragen/translations-updater`
 
 Add `require_once __DIR__ . '/vendor/autoload.php';` to main plugin file or theme's functions.php file.
 
