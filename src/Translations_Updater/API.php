@@ -66,8 +66,8 @@ trait API {
 			case 'gitea':
 				$arr['repo'] = 'gitea';
 				// TODO: make sure this works
-				$arr['base_uri']      = $this->repo->enterprise . '/api/v1';
-				$arr['base_download'] = $this->repo->enterprise;
+				$arr['base_uri']      = $this->repo->languages . '/api/v1';
+				$arr['base_download'] = $this->repo->languages;
 				break;
 		}
 

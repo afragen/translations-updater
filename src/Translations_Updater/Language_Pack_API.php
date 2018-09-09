@@ -130,7 +130,7 @@ class Language_Pack_API {
 				break;
 			case 'gitea':
 				// TODO: make sure this works
-				$package = [ $headers['uri'] ];
+				$package = [ $headers['uri'], 'raw/master' ];
 				$package = implode( '/', $package ) . $local->package;
 				break;
 		}
