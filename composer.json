@@ -35,7 +35,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Fragen\\Translations_Updater\\": "/src/Translations_Updater/"
+      "Fragen\\Translations_Updater\\": "afragen/translations-updater/src/Translations_Updater/"
     },
     "files": [
       ""
