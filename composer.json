@@ -1,7 +1,7 @@
 {
   "name": "afragen/translations-updater",
-  "description": "Framework to provide automatic updating of language packs from public repository.",
-  "type": "wordpress-framework",
+  "description": "Framework to provide automatic updating of language packs from a public repository.",
+  "type": "library",
   "license": "MIT",
   "keywords": [
     "wordpress",
