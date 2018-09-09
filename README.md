@@ -49,6 +49,12 @@ You will need to add a key/value pairs to your setup array similar to the follow
 'languages' => 'https://github.com/<USER>/my-language-pack',
 ```
 
+You will need to include the following command to activate the updater.
+
+```php
+( new \Fragen\Translations_Updater\Init() )->edd_run();
+```
+
 ### Plugins
 
 You must add an additional key/value pair to the setup array in your `EDD_SL_Plugin_Updater` setup. The array will be similar to the following from the `edd-sample-plugin.php` file.
