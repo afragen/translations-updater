@@ -49,22 +49,22 @@ trait API {
 
 		switch ( $this->repo->git ) {
 			case 'github':
-				$arr['repo']          = 'github';
+				$arr['git']           = 'github';
 				$arr['base_uri']      = 'https://api.github.com';
 				$arr['base_download'] = 'https://github.com';
 				break;
 			case 'bitbucket':
-				$arr['repo']          = 'bitbucket';
+				$arr['git']           = 'bitbucket';
 				$arr['base_uri']      = 'https://bitbucket.org/api';
 				$arr['base_download'] = 'https://bitbucket.org';
 				break;
 			case 'gitlab':
-				$arr['repo']          = 'gitlab';
+				$arr['git']           = 'gitlab';
 				$arr['base_uri']      = 'https://gitlab.com/api/v4';
 				$arr['base_download'] = 'https://gitlab.com';
 				break;
 			case 'gitea':
-				$arr['repo'] = 'gitea';
+				$arr['git'] = 'gitea';
 				// TODO: make sure this works
 				$arr['base_uri']      = $this->repo->languages . '/api/v1';
 				$arr['base_download'] = $this->repo->languages;
@@ -103,7 +103,7 @@ trait API {
 	protected function get_api_url( $endpoint ) {
 		$type = $this->return_repo_type();
 
-		switch ( $type['repo'] ) {
+		switch ( $type['git'] ) {
 			case 'github':
 			case 'bitbucket':
 			case 'gitea':
