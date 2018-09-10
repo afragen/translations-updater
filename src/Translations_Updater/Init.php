@@ -83,15 +83,10 @@ class Init {
 			}, 15, 1
 		);
 		add_action(
-			'post_edd_sl_theme_updater_setup', function( $edd_config ) {
-				foreach ( $edd_config as $slug => $config ) {
-					if ( ! is_array( $config ) ) {
-						return false;
-					}
-					$config['type'] = 'theme';
-					$config['slug'] = $config['theme_slug'];
-					$this->run( $config );
-				}
+			'post_edd_sl_theme_updater_setup', function( $config ) {
+				$config['type'] = 'theme';
+				$config['slug'] = $config['theme_slug'];
+				$this->run( $config );
 			}, 15, 1
 		);
 	}
