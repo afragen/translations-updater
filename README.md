@@ -19,6 +19,9 @@ This framework allows for decoupled language pack updates for your WordPress plu
 
 Install via Composer, `composer require afragen/translations-updater:dev-master`
 
+**Prior to release use the following command**
+`composer require afragen/translations-updater:dev-<branch>` currently `dev-composer`
+
 Add `require_once __DIR__ . '/vendor/autoload.php';` to the main plugin file or theme's functions.php file.
 
 A configuration array with the following format is needed. All array elements are required.
@@ -61,7 +64,7 @@ You will need to include the following command to your bootstrap file to activat
 
 ### Plugins
 
-You must add 2 additional key/value pairs to the setup array in your `EDD_SL_Plugin_Updater` setup. The array will be similar to the following from the `edd-sample-plugin.php` file.
+You must add two additional key/value pairs to the setup array in your `EDD_SL_Plugin_Updater` setup. The array will be similar to the following from the `edd-sample-plugin.php` file.
 
 ```php
 	$edd_updater = new EDD_SL_Plugin_Updater( EDD_SAMPLE_STORE_URL, __FILE__, array(
@@ -77,7 +80,7 @@ You must add 2 additional key/value pairs to the setup array in your `EDD_SL_Plu
 
 ### Themes
 
-You must 2 additional key/value pairs to the setup array in your `EDD_Theme_Updater_Admin` setup. The array will be similar to the following from the `edd-sample-theme/updater/theme-updater.php` file.
+You must add two additional key/value pairs to the setup array in your `EDD_Theme_Updater_Admin` setup. The array will be similar to the following from the `edd-sample-theme/updater/theme-updater.php` file.
 
 ```php
 $updater = new EDD_Theme_Updater_Admin(
