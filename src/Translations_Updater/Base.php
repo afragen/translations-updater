@@ -101,7 +101,7 @@ trait Base {
 	 *
 	 * @return void
 	 */
-	public function delete_options() {
+	public function delete_cached_data() {
 		global $wpdb;
 
 		$table         = is_multisite() ? $wpdb->base_prefix . 'sitemeta' : $wpdb->base_prefix . 'options';
