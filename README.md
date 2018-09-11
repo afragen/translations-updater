@@ -2,36 +2,34 @@
 # Translations Updater
 
 * Contributors: [Andy Fragen](https://github.com/afragen)
-* Tags: composer, plugins, themes, edd software licensing, language pack, updater
-* Requires at least: 4.8
-* Requires PHP: 5.6
-* Tested up to: 4.9
-* Stable tag: master
+* Tags: plugins, themes, edd software licensing, language pack, updater
+* Requires at least: 4.6
+* Requires PHP: 5.4
 * Donate link: <http://thefragens.com/translations-updater-donate>
 * License: MIT
 * License URI: <http://www.opensource.org/licenses/MIT>
 
 ## Description
 
-This framework allows for decoupled language pack updates for your plugins or themes that are hosted on public repositories in GitHub, Bitbucket, GitLab, or Gitea.
+This framework allows for decoupled language pack updates for your WordPress plugins or themes are hosted on public repositories in GitHub, Bitbucket, GitLab, or Gitea.
 
  The URI should point to a repository that contains the translations files. Refer to [GitHub Updater Translations](https://github.com/afragen/github-updater-translations) as an example. It is created using the [Language Pack Maker](https://github.com/afragen/language-pack-maker). The repo **must** be a public repo.
 
 ## Usage
 
-Install via Composer, `composer require afragen/translations-updater`
+Install via Composer, `composer require afragen/translations-updater:dev-master`
 
-Add `require_once __DIR__ . '/vendor/autoload.php';` to main plugin file or theme's functions.php file.
+Add `require_once __DIR__ . '/vendor/autoload.php';` to the main plugin file or theme's functions.php file.
 
-A configuration array with the following format is needed.
+A configuration array with the following format is needed. All array elements are required.
 
 ```php
 add_action( 'admin_init', function() {
 	$config = [
-		'git'       => '{github|bitbucket|gitlab|gitea}',
-		'type'      => '{plugin|theme}',
+		'git'       => '(github|bitbucket|gitlab|gitea)',
+		'type'      => '(plugin|theme)',
 		'slug'      => 'my-repo-slug',
-		'version'   => 'my-repo-version', // Current version of plugin/theme.
+		'version'   => 'my-repo-version', // Current version of plugin|theme.
 		'languages' => 'https://my-path-to/language-packs',
 	];
 
@@ -39,17 +37,23 @@ add_action( 'admin_init', function() {
 } );
 ```
 
-## EDD Software Licensing Usage
+If you wish to delete the data stored in the options table associated with this framework you will need to issue the following command.
 
-If using with EDD you will need to update to the latest versions of the updaters in the EDD Software Licensing sample code to ensure the appropriate action hooks are present.
-
-You will need to add a key/value pairs to your setup array similar to the following,
 ```php
-'git'       => 'github',
-'languages' => 'https://github.com/<USER>/my-language-pack',
+( new \Fragen\Translations_Updater\Init() )->delete_cached_data();
 ```
 
-You will need to include the following command to activate the updater.
+## EDD Software Licensing Usage
+
+If using this framework with EDD Software Licensing you will need to update to the latest versions of the updaters in the EDD Software Licensing sample code to ensure the appropriate action hooks are present.
+
+You will need to add two key/value pairs to your setup array similar to the following,
+```php
+'git'       => 'bitbucket',
+'languages' => 'https://bitbucket.org/<USER>/my-language-pack',
+```
+
+You will need to include the following command to your bootstrap file to activate the updater.
 
 ```php
 ( new \Fragen\Translations_Updater\Init() )->edd_run();
@@ -57,7 +61,7 @@ You will need to include the following command to activate the updater.
 
 ### Plugins
 
-You must add an additional key/value pair to the setup array in your `EDD_SL_Plugin_Updater` setup. The array will be similar to the following from the `edd-sample-plugin.php` file.
+You must add 2 additional key/value pairs to the setup array in your `EDD_SL_Plugin_Updater` setup. The array will be similar to the following from the `edd-sample-plugin.php` file.
 
 ```php
 	$edd_updater = new EDD_SL_Plugin_Updater( EDD_SAMPLE_STORE_URL, __FILE__, array(
@@ -73,7 +77,7 @@ You must add an additional key/value pair to the setup array in your `EDD_SL_Plu
 
 ### Themes
 
-You must add an additional key/value pairs to the setup array in your `EDD_Theme_Updater_Admin` setup. The array will be similar to the following from the `edd-sample-theme/updater/theme-updater.php` file.
+You must 2 additional key/value pairs to the setup array in your `EDD_Theme_Updater_Admin` setup. The array will be similar to the following from the `edd-sample-theme/updater/theme-updater.php` file.
 
 ```php
 $updater = new EDD_Theme_Updater_Admin(

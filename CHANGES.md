@@ -1,6 +1,9 @@
 #### [unreleased]
-* convert to composer dependency and make more generic for any plugin/theme
+* convert to composer dependency and make more generic for any WordPress plugin or theme
 * support EDD Software Licensing `post_edd_sl_{plugin|theme}_updater_setup` action hooks
+
+**The following commit messages are for the deprecated plugin version**
+**https://github.com/afragen/translations-updater/tree/plugin**
 
 #### 1.2.1 / 2018-07-01
 * fixed some readme data
