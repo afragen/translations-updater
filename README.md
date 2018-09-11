@@ -49,8 +49,8 @@ If using this framework with EDD Software Licensing you will need to update to t
 
 You will need to add two key/value pairs to your setup array similar to the following,
 ```php
-'git'       => 'bitbucket',
-'languages' => 'https://bitbucket.org/<USER>/my-language-pack',
+'git'       => 'github',
+'languages' => 'https://github.com/<USER>/my-language-pack',
 ```
 
 You will need to include the following command to your bootstrap file to activate the updater.
@@ -70,8 +70,8 @@ You must add 2 additional key/value pairs to the setup array in your `EDD_SL_Plu
 			'item_name' => EDD_SAMPLE_ITEM_NAME, // name of this plugin
 			'author'    => 'Pippin Williamson',  // author of this plugin
 			'beta'      => false,
-			'git'       => 'github',
-			'languages' => 'https://github.com/<USER>/my-language-pack',
+			'git'       => 'bitbucket',
+			'languages' => 'https://bitbucket.org/afragen/test-language-pack',
 		)
 ```
 
