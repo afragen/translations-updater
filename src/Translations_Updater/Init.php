@@ -23,6 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  */
 class Init {
+
 	use Base;
 
 	/**
@@ -42,7 +43,6 @@ class Init {
 		);
 
 		return $user_can_update && in_array( $pagenow, array_unique( $admin_pages ), true );
-
 	}
 
 	/**
@@ -71,7 +71,8 @@ class Init {
 	 */
 	public function edd_run() {
 		add_action(
-			'post_edd_sl_plugin_updater_setup', function( $edd_config ) {
+			'post_edd_sl_plugin_updater_setup',
+			function ( $edd_config ) {
 				foreach ( $edd_config as $slug => $config ) {
 					if ( ! is_array( $config ) ) {
 						return false;
@@ -80,15 +81,19 @@ class Init {
 					$config['slug'] = $slug;
 					$this->run( $config );
 				}
-			}, 15, 1
+			},
+			15,
+			1
 		);
 		add_action(
-			'post_edd_sl_theme_updater_setup', function( $config ) {
+			'post_edd_sl_theme_updater_setup',
+			function ( $config ) {
 				$config['type'] = 'theme';
 				$config['slug'] = $config['theme_slug'];
 				$this->run( $config );
-			}, 15, 1
+			},
+			15,
+			1
 		);
 	}
-
 }

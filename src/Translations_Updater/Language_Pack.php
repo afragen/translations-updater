@@ -23,6 +23,7 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  */
 class Language_Pack {
+
 	use Base;
 
 	/**
@@ -83,7 +84,8 @@ class Language_Pack {
 		}
 
 		$repos = array_filter(
-			$this->config, function( $e ) {
+			$this->config,
+			function ( $e ) {
 				return isset( $e->language_packs );
 			}
 		);
@@ -106,5 +108,4 @@ class Language_Pack {
 
 		return $transient;
 	}
-
 }

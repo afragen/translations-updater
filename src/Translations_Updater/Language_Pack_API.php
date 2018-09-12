@@ -16,6 +16,7 @@ namespace Fragen\Translations_Updater;
  * @package Fragen\Translations_Updater
  */
 class Language_Pack_API {
+
 	use API;
 
 	/**
@@ -137,5 +138,4 @@ class Language_Pack_API {
 
 		return $package;
 	}
-
 }
