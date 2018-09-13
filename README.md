@@ -11,16 +11,16 @@
 
 ## Description
 
-This framework allows for decoupled language pack updates for your WordPress plugins or themes are hosted on public repositories in GitHub, Bitbucket, GitLab, or Gitea.
+This framework allows for decoupled language pack updates for your WordPress plugins or themes that are hosted on public repositories in GitHub, Bitbucket, GitLab, or Gitea.
 
  The URI should point to a repository that contains the translations files. Refer to [GitHub Updater Translations](https://github.com/afragen/github-updater-translations) as an example. It is created using the [Language Pack Maker](https://github.com/afragen/language-pack-maker). The repo **must** be a public repo.
 
 ## Usage
 
-Install via Composer, `composer require afragen/translations-updater:dev-master`
+Install via Composer: `composer require afragen/translations-updater:dev-master`
 
 **Prior to release use the following command**
-`composer require afragen/translations-updater:dev-<branch>` currently `dev-composer`
+`composer require afragen/translations-updater:dev-<branch>` currently `dev-develop`
 
 Add `require_once __DIR__ . '/vendor/autoload.php';` to the main plugin file or theme's functions.php file.
 
