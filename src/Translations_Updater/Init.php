@@ -11,60 +11,89 @@
 namespace Fragen\Translations_Updater;
 
 /**
+ * Exit if called directly.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
+
+/**
  * Class Init
  *
  * @package Fragen\Translations_Updater
  */
 class Init {
+
 	use Base;
 
 	/**
-	 * Variable to hold boolean to check user privileges.
-	 *
-	 * @var bool
-	 */
-	protected static $can_user_update;
-
-
-	/**
-	 * Let's get going.
-	 */
-	public function run() {
-		$this->load_hooks();
-	}
-
-	/**
-	 * Load relevant action/filter hooks.
-	 * Use 'init' hook for user capabilities.
-	 */
-	protected function load_hooks() {
-		add_action( 'init', array( &$this, 'load' ) );
-		add_action( 'init', array( &$this, 'background_update' ) );
-
-		add_filter( 'extra_theme_headers', array( &$this, 'add_headers' ) );
-		add_filter( 'extra_plugin_headers', array( &$this, 'add_headers' ) );
-	}
-
-	/**
-	 * Instantiate Plugin and Theme for proper user capabilities.
+	 * Test for proper user capabilities.
 	 *
 	 * @return bool
 	 */
-	public function can_update() {
+	private function can_update() {
 		global $pagenow;
 
-		$load_multisite        = ( is_network_admin() && current_user_can( 'manage_network' ) );
-		$load_single_site      = ( ! is_multisite() && current_user_can( 'manage_options' ) );
-		self::$can_user_update = $load_multisite || $load_single_site;
-
-		$admin_pages = array(
+		$user_can_update = current_user_can( 'update_plugins' ) && current_user_can( 'update_themes' );
+		$admin_pages     = array(
 			'plugins.php',
 			'themes.php',
 			'update-core.php',
 			'update.php',
 		);
 
-		return self::$can_user_update && in_array( $pagenow, array_unique( $admin_pages ), true );
+		return $user_can_update && in_array( $pagenow, array_unique( $admin_pages ), true );
 	}
 
+	/**
+	 * Start the processing.
+	 *
+	 * @param mixed $config   [ 'git' => '{github|bitbucket|gitlab|gitea}',
+	 *                          'type' => '{plugin|theme}',
+	 *                          'slug' => 'my-repo-slug',
+	 *                          'version => '1.0',
+	 *                          'languages' => 'https://github.com/<owner>/my-translations',
+	 *                        ]
+	 * @return void|bool
+	 */
+	public function run( $config ) {
+		if ( ! isset( $config['git'], $config['type'], $config['slug'], $config['version'], $config['languages'] ) ) {
+			return false;
+		}
+		if ( $this->can_update() ) {
+			$config = $this->sanitize( $config );
+			$this->get_remote_repo_data( $config );
+		}
+	}
+
+	/**
+	 * Load relevant action hooks for EDD Software Licensing.
+	 */
+	public function edd_run() {
+		add_action(
+			'post_edd_sl_plugin_updater_setup',
+			function ( $edd_config ) {
+				foreach ( $edd_config as $slug => $config ) {
+					if ( ! is_array( $config ) ) {
+						return false;
+					}
+					$config['type'] = 'plugin';
+					$config['slug'] = $slug;
+					$this->run( $config );
+				}
+			},
+			15,
+			1
+		);
+		add_action(
+			'post_edd_sl_theme_updater_setup',
+			function ( $config ) {
+				$config['type'] = 'theme';
+				$config['slug'] = $config['theme_slug'];
+				$this->run( $config );
+			},
+			15,
+			1
+		);
+	}
 }

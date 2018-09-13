@@ -1,19 +1,15 @@
 {
   "name": "afragen/translations-updater",
-  "type": "wordpress-plugin",
+  "description": "This framework provides automatic decoupled languate pack updates from a public repository for your WordPress plugin or theme.",
+  "type": "library",
+  "license": "MIT",
   "keywords": [
     "wordpress",
     "plugin",
     "theme",
     "updater",
+    "language pack",
     "translations"
-  ],
-  "license": "MIT",
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/afragen/translations-updater"
-    }
   ],
   "authors": [
     {
@@ -23,9 +19,23 @@
       "role": "Developer"
     }
   ],
+  "support": {
+    "issues": "https://github.com/afragen/translations-updater/issues",
+    "source": "https://github.com/afragen/translations-updater"
+  },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/afragen/translations-updater"
+    }
+  ],
   "prefer-stable": true,
   "require": {
-    "composer/installers": "^1.0",
-    "php": ">=5.3"
+    "php": ">=5.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Fragen\\Translations_Updater\\": "src/Translations_Updater/"
+    }
   }
 }
