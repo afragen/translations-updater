@@ -1,6 +1,7 @@
 #### [unreleased]
 * convert to composer dependency and make more generic for any WordPress plugin or theme
 * support EDD Software Licensing `post_edd_sl_{plugin|theme}_updater_setup` action hooks
+* update for Bitbucket API 2.0
 
 **The following commit messages are for the deprecated EDD Translations Updater plugin version**
 **https://github.com/afragen/translations-updater/tree/plugin**
