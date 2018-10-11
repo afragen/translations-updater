@@ -20,7 +20,7 @@ This framework allows for decoupled language pack updates for your WordPress plu
 Install via Composer: `composer require afragen/translations-updater:dev-master`
 
 **Prior to release use the following command**
-`composer require afragen/translations-updater:dev-<branch>` currently `dev-develop`
+`composer require afragen/translations-updater:dev-<branch>` currently `dev-master`
 
 Add `require_once __DIR__ . '/vendor/autoload.php';` to the main plugin file or theme's functions.php file.
 
