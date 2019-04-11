@@ -56,8 +56,8 @@ class Language_Pack {
 		$repo                        = $this->repo_api->get_language_pack( $headers );
 		$this->config[ $repo->slug ] = $repo;
 
-		add_filter( 'pre_set_site_transient_update_plugins', [ $this, 'pre_set_site_transient' ] );
-		add_filter( 'pre_set_site_transient_update_themes', [ $this, 'pre_set_site_transient' ] );
+		add_filter( 'site_transient_update_plugins', [ $this, 'update_site_transient' ] );
+		add_filter( 'site_transient_update_themes', [ $this, 'update_site_transient' ] );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class Language_Pack {
 	 *
 	 * @return mixed
 	 */
-	public function pre_set_site_transient( $transient ) {
+	public function update_site_transient( $transient ) {
 		$locales = get_available_languages();
 		$locales = ! empty( $locales ) ? $locales : array( get_locale() );
 		$repos   = array();
@@ -76,10 +76,10 @@ class Language_Pack {
 			return $transient;
 		}
 
-		if ( 'pre_set_site_transient_update_plugins' === current_filter() ) {
+		if ( 'site_transient_update_plugins' === current_filter() ) {
 			$translations = wp_get_installed_translations( 'plugins' );
 		}
-		if ( 'pre_set_site_transient_update_themes' === current_filter() ) {
+		if ( 'site_transient_update_themes' === current_filter() ) {
 			$translations = wp_get_installed_translations( 'themes' );
 		}
 
