@@ -2,10 +2,10 @@
 /**
  * Translations Updater
  *
- * @package   Fragen\Translations_Updater
- * @author    Andy Fragen
- * @license   MIT
- * @link      https://github.com/afragen/translations-updater
+ * @package Fragen\Translations_Updater
+ * @author  Andy Fragen
+ * @license MIT
+ * @link    https://github.com/afragen/translations-updater
  */
 
 namespace Fragen\Translations_Updater;
@@ -23,7 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  */
 class Init {
-
 	use Base;
 
 	/**
@@ -53,7 +52,7 @@ class Init {
 	 *                          'slug' => 'my-repo-slug',
 	 *                          'version => '1.0',
 	 *                          'languages' => 'https://github.com/<owner>/my-translations',
-	 *                        ]
+	 *                        ].
 	 * @return void|bool
 	 */
 	public function run( $config ) {

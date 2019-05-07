@@ -2,10 +2,10 @@
 /**
  * Translations Updater
  *
- * @package   Fragen\Translations_Updater
- * @author    Andy Fragen
- * @license   MIT
- * @link      https://github.com/afragen/translations-updater
+ * @package Fragen\Translations_Updater
+ * @author  Andy Fragen
+ * @license MIT
+ * @link    https://github.com/afragen/translations-updater
  */
 
 namespace Fragen\Translations_Updater;
@@ -23,7 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  */
 trait API {
-
 	/**
 	 * Variable for setting update transient hours.
 	 *
@@ -65,7 +64,7 @@ trait API {
 				break;
 			case 'gitea':
 				$arr['git'] = 'gitea';
-				// TODO: make sure this works
+				// TODO: make sure this works.
 				$arr['base_uri']      = $this->repo->languages . '/api/v1';
 				$arr['base_download'] = $this->repo->languages;
 				break;
@@ -77,7 +76,7 @@ trait API {
 	/**
 	 * Call the API and return a json decoded body.
 	 *
-	 * @param string $url
+	 * @param string $url Repository URL.
 	 *
 	 * @return boolean|\stdClass
 	 */
@@ -96,7 +95,7 @@ trait API {
 	 *
 	 * @access protected
 	 *
-	 * @param string $endpoint
+	 * @param string $endpoint API endpoint.
 	 *
 	 * @return string $endpoint
 	 */
@@ -120,7 +119,7 @@ trait API {
 	/**
 	 * Validate wp_remote_get response.
 	 *
-	 * @param $response
+	 * @param \stdClass $response API response.
 	 *
 	 * @return bool true if invalid
 	 */

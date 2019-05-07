@@ -2,13 +2,20 @@
 /**
  * Translations Updater
  *
- * @package   Fragen\Translations_Updater
- * @author    Andy Fragen
- * @license   MIT
- * @link      https://github.com/afragen/translations-updater
+ * @package Fragen\Translations_Updater
+ * @author  Andy Fragen
+ * @license MIT
+ * @link    https://github.com/afragen/translations-updater
  */
 
 namespace Fragen\Translations_Updater;
+
+/**
+ * Exit if called directly.
+ */
+if ( ! defined( 'WPINC' ) ) {
+	die;
+}
 
 /**
  * Class Language_Pack_API
@@ -16,7 +23,6 @@ namespace Fragen\Translations_Updater;
  * @package Fragen\Translations_Updater
  */
 class Language_Pack_API {
-
 	use API;
 
 	/**
@@ -63,8 +69,8 @@ class Language_Pack_API {
 	/**
 	 * Get language-pack.json from appropriate host.
 	 *
-	 * @param string $git ( github|bitbucket|gitlab|gitea )
-	 * @param array  $headers
+	 * @param string $git     ( github|bitbucket|gitlab|gitea ).
+	 * @param array  $headers Repository headers.
 	 *
 	 * @return array|bool|mixed|object $response API response object.
 	 */
@@ -80,7 +86,7 @@ class Language_Pack_API {
 				$response = $this->api( '/2.0/repositories/' . $headers['owner'] . '/' . $headers['repo'] . '/src/master/language-pack.json' );
 				break;
 			case 'gitlab':
-				$id       = urlencode( $headers['owner'] . '/' . $headers['repo'] );
+				$id       = rawurlencode( $headers['owner'] . '/' . $headers['repo'] );
 				$response = $this->api( '/projects/' . $id . '/repository/files/language-pack.json' );
 				$response = isset( $response->content )
 					? json_decode( base64_decode( $response->content ) )
@@ -104,9 +110,9 @@ class Language_Pack_API {
 	/**
 	 * Process $package for update transient.
 	 *
-	 * @param string $git ( github|bitbucket|gitlab|gitea )
-	 * @param string $locale
-	 * @param array  $headers
+	 * @param string $git     ( github|bitbucket|gitlab|gitea ).
+	 * @param string $locale  Site locale.
+	 * @param array  $headers Repository headers.
 	 *
 	 * @return array|null|string
 	 */
@@ -127,7 +133,7 @@ class Language_Pack_API {
 				$package = implode( '/', $package ) . $locale->package;
 				break;
 			case 'gitea':
-				// TODO: make sure this works
+				// TODO: make sure this works.
 				$package = [ $headers['uri'], 'raw/master' ];
 				$package = implode( '/', $package ) . $local->package;
 				break;

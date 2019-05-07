@@ -2,10 +2,10 @@
 /**
  * Translations Updater
  *
- * @package   Fragen\Translations_Updater
- * @author    Andy Fragen
- * @license   MIT
- * @link      https://github.com/afragen/translations-updater
+ * @package Fragen\Translations_Updater
+ * @author  Andy Fragen
+ * @license MIT
+ * @link    https://github.com/afragen/translations-updater
  */
 
 namespace Fragen\Translations_Updater;
@@ -26,7 +26,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @author  Andy Fragen
  */
 trait Base {
-
 	/**
 	 * Store details of all repositories that are installed.
 	 *
@@ -58,7 +57,7 @@ trait Base {
 	/**
 	 * Parse URI param returning array of parts.
 	 *
-	 * @param string $repo_header
+	 * @param string $repo_header Repository URI.
 	 *
 	 * @return array $header
 	 */
