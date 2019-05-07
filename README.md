@@ -59,7 +59,7 @@ You will need to add two key/value pairs to your setup array similar to the foll
 You will need to include the following command to your bootstrap file to activate the updater.
 
 ```php
-( new \Fragen\Translations_Updater\Init() )->edd_run();
+( new \Fragen\Translations_Updater\Init( __NAMESPACE__ ) )->edd_run();
 ```
 
 ### Plugins
