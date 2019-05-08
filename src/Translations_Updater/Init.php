@@ -100,6 +100,7 @@ class Init {
 		$edd_sl_updater = 'EDD\Software_Licensing\Updater';
 		if ( $edd_sl_updater !== $this->caller ) {
 			if ( 'post_edd_sl_plugin_updater_setup' === current_filter() ) {
+				$slug           = array_keys( $config )[0];
 				$config         = array_values( $config )[0];
 				$config['type'] = 'plugin';
 				$config['slug'] = $slug;
