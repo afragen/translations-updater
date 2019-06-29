@@ -2,10 +2,10 @@
 /**
  * Translations Updater
  *
- * @package   Fragen\Translations_Updater
- * @author    Andy Fragen
- * @license   MIT
- * @link      https://github.com/afragen/translations-updater
+ * @package Fragen\Translations_Updater
+ * @author  Andy Fragen
+ * @license MIT
+ * @link    https://github.com/afragen/translations-updater
  */
 
 namespace Fragen\Translations_Updater;
@@ -23,8 +23,23 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  */
 class Init {
-
 	use Base;
+
+	/**
+	 * Holds calling class for EDD SL Updater.
+	 *
+	 * @var string
+	 */
+	private $caller;
+
+	/**
+	 * Constructor.
+	 *
+	 * @param string $caller Namespace of calling class.
+	 */
+	public function __construct( $caller = null ) {
+		$this->caller = $caller;
+	}
 
 	/**
 	 * Test for proper user capabilities.
@@ -53,7 +68,7 @@ class Init {
 	 *                          'slug' => 'my-repo-slug',
 	 *                          'version => '1.0',
 	 *                          'languages' => 'https://github.com/<owner>/my-translations',
-	 *                        ]
+	 *                        ].
 	 * @return void|bool
 	 */
 	public function run( $config ) {
@@ -70,30 +85,31 @@ class Init {
 	 * Load relevant action hooks for EDD Software Licensing.
 	 */
 	public function edd_run() {
-		add_action(
-			'post_edd_sl_plugin_updater_setup',
-			function ( $edd_config ) {
-				foreach ( $edd_config as $slug => $config ) {
-					if ( ! is_array( $config ) ) {
-						return false;
-					}
-					$config['type'] = 'plugin';
-					$config['slug'] = $slug;
-					$this->run( $config );
-				}
-			},
-			15,
-			1
-		);
-		add_action(
-			'post_edd_sl_theme_updater_setup',
-			function ( $config ) {
+		add_action( 'post_edd_sl_plugin_updater_setup', [ $this, 'parse_edd_config' ], 15, 1 );
+		add_action( 'post_edd_sl_theme_updater_setup', [ $this, 'parse_edd_config' ], 15, 1 );
+	}
+
+	/**
+	 * Parse passed config from EDD SL.
+	 *
+	 * @param array $config EDD SL config array.
+	 *
+	 * @return void
+	 */
+	public function parse_edd_config( $config ) {
+		$edd_sl_updater = 'EDD\Software_Licensing\Updater';
+		if ( $edd_sl_updater !== $this->caller ) {
+			if ( 'post_edd_sl_plugin_updater_setup' === current_filter() ) {
+				$slug           = array_keys( $config )[0];
+				$config         = array_values( $config )[0];
+				$config['type'] = 'plugin';
+				$config['slug'] = $slug;
+			}
+			if ( 'post_edd_sl_theme_updater_setup' === current_filter() ) {
 				$config['type'] = 'theme';
 				$config['slug'] = $config['theme_slug'];
-				$this->run( $config );
-			},
-			15,
-			1
-		);
+			}
+		}
+		$this->run( $config );
 	}
 }

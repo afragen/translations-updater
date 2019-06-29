@@ -2,10 +2,10 @@
 /**
  * Translations Updater
  *
- * @package   Fragen\Translations_Updater
- * @author    Andy Fragen
- * @license   MIT
- * @link      https://github.com/afragen/translations-updater
+ * @package Fragen\Translations_Updater
+ * @author  Andy Fragen
+ * @license MIT
+ * @link    https://github.com/afragen/translations-updater
  */
 
 namespace Fragen\Translations_Updater;
@@ -23,7 +23,6 @@ if ( ! defined( 'WPINC' ) ) {
  * @package Fragen\Translations_Updater
  */
 class Language_Pack {
-
 	use Base;
 
 	/**
@@ -36,8 +35,8 @@ class Language_Pack {
 	/**
 	 * Language_Pack constructor.
 	 *
-	 * @param \stdClass                                      $config
-	 * @param \Fragen\Translations_Updater\Language_Pack_API $api  Language_Pack_API object.
+	 * @param \stdClass                                      $config Config data.
+	 * @param \Fragen\Translations_Updater\Language_Pack_API $api    Language_Pack_API object.
 	 */
 	public function __construct( $config, Language_Pack_API $api ) {
 		if ( null === $config->languages ) {
@@ -63,7 +62,7 @@ class Language_Pack {
 	/**
 	 * Add language translations to update_plugins or update_themes transients.
 	 *
-	 * @param $transient
+	 * @param \stdClass $transient Update transient.
 	 *
 	 * @return mixed
 	 */
