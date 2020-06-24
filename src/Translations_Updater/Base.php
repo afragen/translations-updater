@@ -70,7 +70,7 @@ trait Base {
 		$header['type']       = explode( '.', $header['host'] )[0] . '_' . $this->repo->type;
 		$header['owner']      = trim( $header_path['dirname'], '/' );
 		$header['repo']       = $header_path['filename'];
-		$header['owner_repo'] = implode( '/', array( $header['owner'], $header['repo'] ) );
+		$header['owner_repo'] = implode( '/', [ $header['owner'], $header['repo'] ] );
 		$header['base_uri']   = str_replace( $header_parts['path'], '', $repo_header );
 		$header['uri']        = isset( $header['scheme'] ) ? trim( $repo_header, '/' ) : null;
 
@@ -87,7 +87,7 @@ trait Base {
 	 * @return array
 	 */
 	public function sanitize( $input ) {
-		$new_input = array();
+		$new_input = [];
 		foreach ( array_keys( (array) $input ) as $id ) {
 			$new_input[ sanitize_file_name( $id ) ] = sanitize_text_field( $input[ $id ] );
 		}
@@ -107,6 +107,6 @@ trait Base {
 		$column        = is_multisite() ? 'meta_key' : 'option_name';
 		$delete_string = 'DELETE FROM ' . $table . ' WHERE ' . $column . ' LIKE %s LIMIT 1000';
 
-		$wpdb->query( $wpdb->prepare( $delete_string, array( '%tu-%' ) ) );
+		$wpdb->query( $wpdb->prepare( $delete_string, [ '%tu-%' ] ) );
 	}
 }

@@ -1,4 +1,6 @@
 #### [unreleased]
+* make work with self-hosted installs of git hosts
+* update `Init::can_update()` for parity with GitHub Updater
 * update for possible universal EDD SL Updater plugin
 * switch to `site_transient_update_{plugins|themes}` filter
 * convert to composer dependency from [EDD Translations Updater](https://github.com/afragen/edd-translations-updater) and make more generic for any WordPress plugin or theme

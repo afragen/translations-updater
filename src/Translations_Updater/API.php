@@ -35,7 +35,7 @@ trait API {
 	 *
 	 * @var array
 	 */
-	protected $response = array();
+	protected $response = [];
 
 	/**
 	 * Return repo data for API calls.
@@ -43,7 +43,7 @@ trait API {
 	 * @return array
 	 */
 	protected function return_repo_type() {
-		$arr         = array();
+		$arr         = [];
 		$arr['type'] = $this->repo->type;
 
 		switch ( $this->repo->git ) {
