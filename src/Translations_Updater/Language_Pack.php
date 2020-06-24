@@ -68,8 +68,8 @@ class Language_Pack {
 	 */
 	public function update_site_transient( $transient ) {
 		$locales = get_available_languages();
-		$locales = ! empty( $locales ) ? $locales : array( get_locale() );
-		$repos   = array();
+		$locales = ! empty( $locales ) ? $locales : [ get_locale() ];
+		$repos   = [];
 
 		if ( ! isset( $transient->translations ) ) {
 			return $transient;
