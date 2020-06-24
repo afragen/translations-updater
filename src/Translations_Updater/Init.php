@@ -47,17 +47,14 @@ class Init {
 	 * @return bool
 	 */
 	private function can_update() {
-		global $pagenow;
+		// WP-CLI access has full capabilities.
+		if ( static::is_wp_cli() ) {
+			return true;
+		}
 
-		$user_can_update = current_user_can( 'update_plugins' ) && current_user_can( 'update_themes' );
-		$admin_pages     = array(
-			'plugins.php',
-			'themes.php',
-			'update-core.php',
-			'update.php',
-		);
+		$can_user_update = current_user_can( 'update_plugins' ) && current_user_can( 'update_themes' );
 
-		return $user_can_update && in_array( $pagenow, array_unique( $admin_pages ), true );
+		return $can_user_update;
 	}
 
 	/**
