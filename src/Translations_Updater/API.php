@@ -104,10 +104,10 @@ trait API {
 		$type = $this->return_repo_type();
 
 		switch ( $type['git'] ) {
-			case 'github':
 			case 'bitbucket':
 			case 'gitea':
-				//break;
+				break;
+			case 'github':
 			case 'gitlab':
 				$endpoint = add_query_arg( 'ref', $type['branch'], $endpoint );
 				break;
