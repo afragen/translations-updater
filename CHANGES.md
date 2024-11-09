@@ -1,4 +1,5 @@
 #### [unreleased]
+* update to select repository branch
 * make work with self-hosted installs of git hosts
 * update `Init::can_update()` for parity with GitHub Updater
 * update for possible universal EDD SL Updater plugin

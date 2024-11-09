@@ -34,6 +34,7 @@ add_action( 'admin_init', function() {
 		'slug'      => 'my-repo-slug',
 		'version'   => 'my-repo-version', // Current version of plugin|theme.
 		'languages' => 'https://my-path-to/language-packs',
+		'branch'    => 'master', // Default.
 	];
 
 	( new \Fragen\Translations_Updater\Init() )->run( $config );
