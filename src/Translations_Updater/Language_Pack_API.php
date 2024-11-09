@@ -28,9 +28,6 @@ class Language_Pack_API {
 	/** @var \stdClass */
 	protected $repo;
 
-	/** @var array */
-	protected $response;
-
 	/**
 	 * Constructor.
 	 *
