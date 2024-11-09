@@ -90,7 +90,7 @@ class Language_Pack {
 		}
 
 		$repos = array_filter(
-			$this->config,
+			(array) $this->config,
 			function ( $e ) {
 				return isset( $e->language_packs );
 			}

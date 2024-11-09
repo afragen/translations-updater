@@ -72,6 +72,7 @@ class Init {
 		if ( ! isset( $config['git'], $config['type'], $config['slug'], $config['version'], $config['languages'] ) ) {
 			return false;
 		}
+		$config['branch'] = isset( $config['branch'] ) ? $config['branch'] : 'master';
 		if ( $this->can_update() ) {
 			$config = $this->sanitize( $config );
 			$this->get_remote_repo_data( $config );

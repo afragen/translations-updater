@@ -43,8 +43,9 @@ trait API {
 	 * @return array
 	 */
 	protected function return_repo_type() {
-		$arr         = [];
-		$arr['type'] = $this->repo->type;
+		$arr           = [];
+		$arr['type']   = $this->repo->type;
+		$arr['branch'] = $this->repo->branch;
 
 		switch ( $this->repo->git ) {
 			case 'github':
@@ -106,9 +107,9 @@ trait API {
 			case 'github':
 			case 'bitbucket':
 			case 'gitea':
-				break;
+				//break;
 			case 'gitlab':
-				$endpoint = add_query_arg( 'ref', 'master', $endpoint );
+				$endpoint = add_query_arg( 'ref', $type['branch'], $endpoint );
 				break;
 			default:
 		}
