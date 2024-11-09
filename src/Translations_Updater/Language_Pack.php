@@ -33,6 +33,13 @@ class Language_Pack {
 	protected $repo;
 
 	/**
+	 * Variable containing repo API object.
+	 *
+	 * @var \stdClass
+	 */
+	protected $repo_api;
+
+	/**
 	 * Language_Pack constructor.
 	 *
 	 * @param \stdClass                                      $config Config data.

@@ -48,7 +48,7 @@ class Init {
 	 */
 	private function can_update() {
 		// WP-CLI access has full capabilities.
-		if ( static::is_wp_cli() ) {
+		if ( defined( 'WP_CLI' ) && \WP_CLI ) {
 			return true;
 		}
 

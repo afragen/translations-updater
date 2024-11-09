@@ -25,6 +25,12 @@ if ( ! defined( 'WPINC' ) ) {
 class Language_Pack_API {
 	use API;
 
+	/** @var \stdClass */
+	protected $repo;
+
+	/** @var array */
+	protected $response;
+
 	/**
 	 * Constructor.
 	 *
@@ -111,7 +117,7 @@ class Language_Pack_API {
 	 * Process $package for update transient.
 	 *
 	 * @param string $git     ( github|bitbucket|gitlab|gitea ).
-	 * @param string $locale  Site locale.
+	 * @param \stdClass $locale  Site locale.
 	 * @param array  $headers Repository headers.
 	 *
 	 * @return array|null|string
@@ -135,7 +141,7 @@ class Language_Pack_API {
 			case 'gitea':
 				// TODO: make sure this works.
 				$package = [ $headers['uri'], 'raw/master' ];
-				$package = implode( '/', $package ) . $local->package;
+				$package = implode( '/', $package ) . $locale->package;
 				break;
 		}
 
