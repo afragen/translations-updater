@@ -143,7 +143,7 @@ trait API {
 		$cache     = get_site_option( $cache_key );
 
 		if ( empty( $cache['timeout'] ) || time() > $cache['timeout'] ) {
-			return false;
+			return [];
 		}
 
 		return $cache;

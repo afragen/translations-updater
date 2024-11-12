@@ -1,4 +1,5 @@
 #### [unreleased]
+* return empty array in `API::get_repo_data()` as appropriate
 * lowercase slugs for GlotPress compatibility
 * more checks to correctly update appropriate transient
 * update to select repository branch
