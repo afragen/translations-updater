@@ -1,4 +1,7 @@
 #### [unreleased]
+
+#### 1.0.0 / 2024-11-12
+* added WPCS-style linting
 * return empty array in `API::get_repo_data()` as appropriate
 * lowercase slugs for GlotPress compatibility
 * more checks to correctly update appropriate transient
