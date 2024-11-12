@@ -41,7 +41,7 @@ trait Base {
 	 *
 	 * @return bool
 	 */
-	public function get_remote_repo_data( $config ) {
+	final public function get_remote_repo_data( $config ) {
 		$config = (object) $config;
 		if ( ! isset( $config->languages ) ) {
 			return false;
@@ -61,7 +61,7 @@ trait Base {
 	 *
 	 * @return array $header
 	 */
-	protected function parse_header_uri( $repo_header ) {
+	final protected function parse_header_uri( $repo_header ) {
 		$header_parts         = parse_url( $repo_header );
 		$header_path          = pathinfo( $header_parts['path'] );
 		$header['original']   = $repo_header;
@@ -86,7 +86,7 @@ trait Base {
 	 *
 	 * @return array
 	 */
-	public function sanitize( $input ) {
+	final public function sanitize( $input ) {
 		$new_input = [];
 		foreach ( array_keys( (array) $input ) as $id ) {
 			$new_input[ sanitize_file_name( $id ) ] = sanitize_text_field( $input[ $id ] );
@@ -100,13 +100,15 @@ trait Base {
 	 *
 	 * @return void
 	 */
-	public function delete_cached_data() {
+	final public function delete_cached_data() {
 		global $wpdb;
 
-		$table         = is_multisite() ? $wpdb->base_prefix . 'sitemeta' : $wpdb->base_prefix . 'options';
-		$column        = is_multisite() ? 'meta_key' : 'option_name';
+		$table  = is_multisite() ? $wpdb->base_prefix . 'sitemeta' : $wpdb->base_prefix . 'options';
+		$column = is_multisite() ? 'meta_key' : 'option_name';
+		// phpcs:disable WordPress.DB
 		$delete_string = 'DELETE FROM ' . $table . ' WHERE ' . $column . ' LIKE %s LIMIT 1000';
 
 		$wpdb->query( $wpdb->prepare( $delete_string, [ '%tu-%' ] ) );
+		// phpcs:enable
 	}
 }

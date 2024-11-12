@@ -6,4 +6,6 @@
 /bin export-ignore
 /tests export-ignore
 phpunit.xml export-ignore
+phpcs.xml.dist export-ignore
+phpcs.xml export-ignore
 composer.lock export-ignore

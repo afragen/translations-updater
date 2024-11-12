@@ -25,7 +25,11 @@ if ( ! defined( 'WPINC' ) ) {
 class Language_Pack_API {
 	use API;
 
-	/** @var \stdClass */
+	/**
+	 * Variable containing plugin/theme object.
+	 *
+	 * @var \stdClass
+	 * */
 	protected $repo;
 
 	/**
@@ -80,6 +84,7 @@ class Language_Pack_API {
 	private function get_language_pack_json( $git, $headers ) {
 		$type = $this->return_repo_type();
 		switch ( $git ) {
+			// phpcs:disable WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 			case 'github':
 				$response = $this->api( "/repos/{$headers['owner']}/{$headers['repo']}/contents/language-pack.json" );
 				$response = isset( $response->content )
@@ -102,6 +107,7 @@ class Language_Pack_API {
 					? json_decode( base64_decode( $response->content ) )
 					: null;
 				break;
+			// phpcs:enable
 		}
 
 		if ( $this->validate_response( $response ) ) {
@@ -114,9 +120,9 @@ class Language_Pack_API {
 	/**
 	 * Process $package for update transient.
 	 *
-	 * @param string $git     ( github|bitbucket|gitlab|gitea ).
+	 * @param string    $git     ( github|bitbucket|gitlab|gitea ).
 	 * @param \stdClass $locale  Site locale.
-	 * @param array  $headers Repository headers.
+	 * @param array     $headers Repository headers.
 	 *
 	 * @return array|null|string
 	 */
