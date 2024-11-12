@@ -31,7 +31,7 @@ add_action( 'admin_init', function() {
 	$config = [
 		'git'       => '(github|bitbucket|gitlab|gitea)',
 		'type'      => '(plugin|theme)',
-		'slug'      => 'my-repo-slug',
+		'slug'      => 'my-repo-slug', // Should be lowercase.
 		'version'   => 'my-repo-version', // Current version of plugin|theme.
 		'languages' => 'https://my-path-to/language-packs',
 		'branch'    => 'master', // Default.
