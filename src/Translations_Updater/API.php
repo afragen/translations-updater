@@ -42,7 +42,7 @@ trait API {
 	 *
 	 * @return array
 	 */
-	protected function return_repo_type() {
+	final protected function return_repo_type() {
 		$arr           = [];
 		$arr['type']   = $this->repo->type;
 		$arr['branch'] = $this->repo->branch;
@@ -81,7 +81,7 @@ trait API {
 	 *
 	 * @return boolean|\stdClass
 	 */
-	protected function api( $url ) {
+	final protected function api( $url ) {
 		$response = wp_remote_get( $this->get_api_url( $url ) );
 
 		if ( is_wp_error( $response ) ) {
@@ -100,7 +100,7 @@ trait API {
 	 *
 	 * @return string $endpoint
 	 */
-	protected function get_api_url( $endpoint ) {
+	final protected function get_api_url( $endpoint ) {
 		$type = $this->return_repo_type();
 
 		switch ( $type['git'] ) {
@@ -124,7 +124,7 @@ trait API {
 	 *
 	 * @return bool true if invalid
 	 */
-	protected function validate_response( $response ) {
+	final protected function validate_response( $response ) {
 		return empty( $response ) || isset( $response->message );
 	}
 
@@ -135,7 +135,7 @@ trait API {
 	 *
 	 * @return array|bool false for expired cache
 	 */
-	protected function get_repo_cache( $repo = false ) {
+	final protected function get_repo_cache( $repo = false ) {
 		if ( ! $repo ) {
 			$repo = isset( $this->type->slug ) ? $this->type->slug : 'tu';
 		}
@@ -158,7 +158,7 @@ trait API {
 	 *
 	 * @return bool
 	 */
-	protected function set_repo_cache( $id, $response, $repo = false ) {
+	final protected function set_repo_cache( $id, $response, $repo = false ) {
 		if ( ! $repo ) {
 			$repo = isset( $this->type->slug ) ? $this->type->slug : 'tu';
 		}

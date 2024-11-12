@@ -33,9 +33,22 @@
   "require": {
     "php": ">=5.4"
   },
+  "require-dev": {
+    "wp-coding-standards/wpcs": "^3.0.0"
+  },
   "autoload": {
     "psr-4": {
       "Fragen\\Translations_Updater\\": "src/Translations_Updater/"
     }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "scripts": {
+    "wpcs": [
+      "vendor/bin/phpcbf .; vendor/bin/phpcs ."
+    ]
   }
 }
