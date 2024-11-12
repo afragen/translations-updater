@@ -89,6 +89,7 @@ trait Base {
 	public function sanitize( $input ) {
 		$new_input = [];
 		foreach ( array_keys( (array) $input ) as $id ) {
+			$input[ $id ] = 'slug' === $id ? strtolower( $input[ $id ] ) : $input[ $id ];
 			$new_input[ sanitize_file_name( $id ) ] = sanitize_text_field( $input[ $id ] );
 		}
 

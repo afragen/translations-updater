@@ -1,4 +1,6 @@
 #### [unreleased]
+* lowercase slugs for GlotPress compatibility
+* more checks to correctly update appropriate transient
 * update to select repository branch
 * make work with self-hosted installs of git hosts
 * update `Init::can_update()` for parity with GitHub Updater
