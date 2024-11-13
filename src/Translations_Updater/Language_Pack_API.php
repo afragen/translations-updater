@@ -128,23 +128,24 @@ class Language_Pack_API {
 	 */
 	private function process_language_pack_package( $git, $locale, $headers ) {
 		$package = null;
+		$type    = $this->return_repo_type();
 		switch ( $git ) {
 			case 'github':
-				$package = [ $headers['uri'], 'blob/master' ];
+				$package = [ $headers['uri'], "blob/{$type['branch']}" ];
 				$package = implode( '/', $package ) . $locale->package;
 				$package = add_query_arg( [ 'raw' => 'true' ], $package );
 				break;
 			case 'bitbucket':
-				$package = [ $headers['uri'], 'raw/master' ];
+				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
 				$package = implode( '/', $package ) . $locale->package;
 				break;
 			case 'gitlab':
-				$package = [ $headers['uri'], 'raw/master' ];
+				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
 				$package = implode( '/', $package ) . $locale->package;
 				break;
 			case 'gitea':
 				// TODO: make sure this works.
-				$package = [ $headers['uri'], 'raw/master' ];
+				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
 				$package = implode( '/', $package ) . $locale->package;
 				break;
 		}
