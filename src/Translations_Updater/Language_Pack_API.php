@@ -47,7 +47,7 @@ class Language_Pack_API {
 	 *
 	 * @param array $headers Array of headers of Language Pack.
 	 *
-	 * @return bool When invalid response.
+	 * @return \stdClass
 	 */
 	public function get_language_pack( $headers ) {
 		$response = ! empty( $this->response['languages'] ) ? $this->response['languages'] : false;
