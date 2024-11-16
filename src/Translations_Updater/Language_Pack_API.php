@@ -122,7 +122,7 @@ class Language_Pack_API {
 	 * @param \stdClass $locale  Site locale.
 	 * @param array     $headers Repository headers.
 	 *
-	 * @return array|null|string
+	 * @return string
 	 */
 	private function process_language_pack_package( $git, $locale, $headers ) {
 		$package = null;
