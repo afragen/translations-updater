@@ -1,4 +1,5 @@
 #### [unreleased]
+* integrate with Git Updater and authenticated API requests
 
 ####  1.1.0 / 2024-11-16
 * add API error caching/logging

@@ -32,7 +32,8 @@
   ],
   "prefer-stable": true,
   "require": {
-    "php": ">=5.4"
+    "php": ">=5.4",
+    "afragen/singleton": "dev-master"
   },
   "require-dev": {
     "wp-coding-standards/wpcs": "^3.0.0"
