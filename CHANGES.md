@@ -1,4 +1,5 @@
 #### [unreleased]
+* always return `$this->repo` in `Language_Pack_API::get_language_pack()`
 
 ####  1.1.0 / 2024-11-16
 * add API error caching/logging
