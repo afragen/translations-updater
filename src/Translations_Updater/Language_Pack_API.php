@@ -64,11 +64,9 @@ class Language_Pack_API {
 					$response->{$locale->language}->version = $this->repo->version;
 				}
 				$this->set_repo_cache( 'languages', $response, $this->repo->slug );
-			} else {
-				return false;
 			}
 		}
-		$this->repo->language_packs = $response;
+		$this->repo->language_packs = $response ? $response : [];
 
 		return $this->repo;
 	}
