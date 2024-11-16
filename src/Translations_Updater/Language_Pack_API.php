@@ -66,7 +66,7 @@ class Language_Pack_API {
 				$this->set_repo_cache( 'languages', $response, $this->repo->slug );
 			}
 		}
-		$this->repo->language_packs = $response ? $response : [];
+		$this->repo->language_packs = $response ? $response : new \stdClass();
 
 		return $this->repo;
 	}
