@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 1.2.0 / 2024-11-17
 * return `WP_Error` in `Language_Pack_API::get_language_pack()` with validation error
 * exit gracefully if `Language_Pack_API::get_language_pack()` returns `WP_Error`
 
