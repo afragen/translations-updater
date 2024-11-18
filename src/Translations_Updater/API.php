@@ -131,7 +131,7 @@ trait API {
 			]
 		);
 		if ( isset( $response['timeout'] ) ) {
-			static::$error_code[ $this->repo->slug ]['wait'] = $response['timeout'];
+			static::$error_code[$this->repo->slug]['wait'] = $this->ratelimit_reset( $response, $this->repo->slug );
 		}
 
 		if ( isset( $response['timeout'] ) && defined( 'WP_DEBUG' ) && WP_DEBUG ) {
