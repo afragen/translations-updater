@@ -90,7 +90,7 @@ trait API {
 	 */
 	final protected function api( $url ) {
 		$url  = $this->get_api_url( $url );
-		$args = [];
+		$args = $this->get_gu_http_args( $url );
 
 		// Use cached API failure data to avoid hammering the API.
 		$response = $this->get_repo_cache( md5( $url ) );

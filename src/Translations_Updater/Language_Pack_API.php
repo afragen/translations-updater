@@ -10,6 +10,8 @@
 
 namespace Fragen\Translations_Updater;
 
+use Fragen\Singleton;
+
 /**
  * Exit if called directly.
  */
@@ -40,6 +42,46 @@ class Language_Pack_API {
 	public function __construct( $config ) {
 		$this->repo     = $config;
 		$this->response = $this->get_repo_cache( $config->slug );
+	}
+
+	/**
+	 * Get authenticated API header for licensed Git Updater users.
+	 *
+	 * @param string $url URL of API request.
+	 *
+	 * @return array
+	 */
+	protected function get_gu_http_args( $url ) {
+		if ( class_exists( 'Fragen\\Git_Updater\\Bootstrap' ) ) {
+			$gu_api  = Singleton::get_instance( 'Fragen\Git_Updater\API\API', $this );
+			$options = $gu_api->get_class_vars( 'Fragen\Git_Updater\Base', 'options' );
+			$token   = ! empty( $options[ "{$this->repo->git}_access_token" ] ) ? $options[ "{$this->repo->git}_access_token" ] : false;
+			if ( $token ) {
+				add_filter(
+					'gu_post_get_credentials',
+					function ( $credentials ) use ( $token ) {
+						$credentials['isset'] = true;
+						$credentials['type']  = $this->repo->git;
+						$credentials['token'] = $token;
+						return $credentials;
+					},
+					10,
+					1
+				);
+				add_filter(
+					'gu_get_auth_header',
+					function ( $args ) {
+						return $args;
+					},
+					10,
+					1
+				);
+			}
+			$auth_header = $gu_api->add_auth_header( [], $url );
+
+			return $auth_header;
+		}
+		return [];
 	}
 
 	/**

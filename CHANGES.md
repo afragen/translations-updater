@@ -1,4 +1,5 @@
 #### [unreleased]
+* integrate with Git Updater and authenticated API requests
 
 #### 1.2.0 / 2024-11-19
 * return `WP_Error` in `Language_Pack_API::get_language_pack()` with validation error
