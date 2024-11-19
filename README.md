@@ -15,12 +15,14 @@ This framework allows for decoupled language pack updates for your WordPress plu
 
  The URI should point to a repository that contains the translations files. Refer to [Git Updater Translations](https://github.com/afragen/git-updater-translations) as an example. It is created using the [Language Pack Maker](https://github.com/afragen/language-pack-maker). The repo **must** be a public repo.
 
+ This is capable of integrating with an active [Git Updater](https://git-updater.coom) installation to use authenticated API requests. This means you must have an active license for Git Updater.
+
 ## Usage
 
-Install via Composer: `composer require afragen/translations-updater:^1`
+Install via Composer: `composer require afragen/translations-updater:^2`
 
 **Prior to release use the following command**
-`composer require afragen/translations-updater:dev-<branch>` currently `dev-master`
+`composer require afragen/translations-updater:dev-<branch>` currently `dev-develop-2.x`
 
 Add `require_once __DIR__ . '/vendor/autoload.php';` to the main plugin file or theme's functions.php file.
 

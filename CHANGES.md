@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.0.0 / 2024-11-19
 * integrate with Git Updater and authenticated API requests
 
 #### 1.2.0 / 2024-11-19
