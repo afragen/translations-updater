@@ -1,5 +1,8 @@
 #### [unreleased]
 
+#### 2.0.1 / 2025-04-16
+* exit early if `$headers` is empty
+
 #### 2.0.0 / 2024-11-19
 * integrate with Git Updater and authenticated API requests
 
