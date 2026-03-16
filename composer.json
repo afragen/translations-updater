@@ -6,8 +6,6 @@
   "version": "2.0.1",
   "keywords": [
     "wordpress",
-    "plugin",
-    "theme",
     "updater",
     "language pack",
     "translations"
@@ -32,7 +30,7 @@
   ],
   "prefer-stable": true,
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.4",
     "afragen/singleton": "dev-master"
   },
   "require-dev": {
@@ -49,8 +47,7 @@
     }
   },
   "scripts": {
-    "wpcs": [
-      "vendor/bin/phpcbf .; vendor/bin/phpcs ."
-    ]
+    "lint": "@php ./vendor/bin/phpcs .",
+    "format": "@php ./vendor/bin/phpcbf ."
   }
 }
