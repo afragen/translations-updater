@@ -3,8 +3,8 @@
 
 * Contributors: [Andy Fragen](https://github.com/afragen)
 * Tags: plugins, themes, edd software licensing, language pack, updater
-* Requires at least: 4.6
-* Requires PHP: 5.4
+* Requires at least: 5.9
+* Requires PHP: 7.4
 * Donate link: <http://thefragens.com/translations-updater-donate>
 * License: MIT
 * License URI: <http://www.opensource.org/licenses/MIT>
