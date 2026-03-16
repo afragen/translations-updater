@@ -65,8 +65,8 @@ class Language_Pack {
 		}
 		$this->config[ $repo->slug ] = $repo;
 
-		add_filter( 'site_transient_update_plugins', [ $this, 'update_site_transient' ] );
-		add_filter( 'site_transient_update_themes', [ $this, 'update_site_transient' ] );
+		add_filter( 'site_transient_update_plugins', [ $this, 'update_site_transient' ], 15, 1 );
+		add_filter( 'site_transient_update_themes', [ $this, 'update_site_transient' ], 15, 1 );
 	}
 
 	/**

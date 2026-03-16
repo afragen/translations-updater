@@ -1,4 +1,5 @@
 #### [unreleased]
+* update priority for `update_site_transient`
 * composer update
 
 #### 2.0.1 / 2025-04-16
