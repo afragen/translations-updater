@@ -173,25 +173,19 @@ class Language_Pack_API {
 	 * @return string
 	 */
 	private function process_language_pack_package( $git, $locale, $headers ) {
-		$package = null;
-		$type    = $this->return_repo_type();
+		$package        = null;
+		$primary_branch = $this->repo->primary_branch ?? 'master';
 		switch ( $git ) {
 			case 'github':
-				$package = [ $headers['uri'], "blob/{$type['branch']}" ];
-				$package = implode( '/', $package ) . $locale->package;
-				$package = add_query_arg( [ 'raw' => 'true' ], $package );
+				$headers['base_uri'] = 'https://raw.githubusercontent.com';
+				$headers['uri']      = $headers['base_uri'] . '/' . $headers['owner_repo'];
+				$package             = [ $headers['uri'], $primary_branch ];
+				$package             = implode( '/', $package ) . $locale->package;
 				break;
 			case 'bitbucket':
-				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
-				$package = implode( '/', $package ) . $locale->package;
-				break;
 			case 'gitlab':
-				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
-				$package = implode( '/', $package ) . $locale->package;
-				break;
 			case 'gitea':
-				// TODO: make sure this works.
-				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
+				$package = [ $headers['uri'], "raw/{$primary_branch}" ];
 				$package = implode( '/', $package ) . $locale->package;
 				break;
 		}

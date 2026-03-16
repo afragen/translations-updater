@@ -1,4 +1,6 @@
 #### [unreleased]
+* update GitHub base uri
+* refactor `Language_Pack_API::process_language_pack_package()`
 * update priority for `update_site_transient`
 * composer update
 
