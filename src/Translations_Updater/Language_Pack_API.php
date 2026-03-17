@@ -177,10 +177,8 @@ class Language_Pack_API {
 		$primary_branch = $this->repo->primary_branch ?? 'master';
 		switch ( $git ) {
 			case 'github':
-				$headers['base_uri'] = 'https://raw.githubusercontent.com';
-				$headers['uri']      = $headers['base_uri'] . '/' . $headers['owner_repo'];
-				$package             = [ $headers['uri'], $primary_branch ];
-				$package             = implode( '/', $package ) . $locale->package;
+				$package = [ $headers['uri'], "raw/refs/heads/{$primary_branch}" ];
+				$package = implode( '/', $package ) . $locale->package;
 				break;
 			case 'bitbucket':
 			case 'gitlab':
