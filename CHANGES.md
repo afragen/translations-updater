@@ -1,5 +1,11 @@
 #### [unreleased]
 
+#### 2.1.0 / 2026-03-18
+* update GitHub download URI
+* refactor `Language_Pack_API::process_language_pack_package()`
+* update priority for `update_site_transient`
+* composer update
+
 #### 2.0.1 / 2025-04-16
 * exit early if `$headers` is empty
 

@@ -211,6 +211,8 @@ trait API {
 	 * @param string      $id       Data Identifier.
 	 * @param mixed       $response Data to be stored.
 	 * @param string|bool $repo     Repo name or false.
+	 * @param string|bool $timeout  Timeout for cache.
+	 *                              Default is $hours (12 hours).
 	 *
 	 * @return bool
 	 */
@@ -242,8 +244,8 @@ trait API {
 		if ( empty( $headers ) ) {
 			return 60;
 		}
-		$data    = $headers->getAll();
-		$wait    = 0;
+		$data = $headers->getAll();
+		$wait = 0;
 		if ( isset( $data['x-ratelimit-reset'] ) ) {
 			$reset = (int) $data['x-ratelimit-reset'];
 			//phpcs:ignore WordPress.DateTime.RestrictedFunctions.date_date

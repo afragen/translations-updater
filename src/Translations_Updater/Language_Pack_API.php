@@ -132,23 +132,23 @@ class Language_Pack_API {
 		switch ( $git ) {
 			// phpcs:disable WordPress.PHP.DiscouragedPHPFunctions.obfuscation_base64_decode
 			case 'github':
-				$response = $this->api( "/repos/{$headers['owner']}/{$headers['repo']}/contents/language-pack.json" );
+				$response = $this->api( "/repos/{$headers['owner_repo']}/contents/language-pack.json" );
 				$response = isset( $response->content )
 					? json_decode( base64_decode( $response->content ) )
 					: null;
 				break;
 			case 'bitbucket':
-				$response = $this->api( "/2.0/repositories/{$headers['owner']}/{$headers['repo']}/src/{$type['branch']}/language-pack.json" );
+				$response = $this->api( "/2.0/repositories/{$headers['owner_repo']}/src/{$type['branch']}/language-pack.json" );
 				break;
 			case 'gitlab':
-				$id       = rawurlencode( $headers['owner'] . '/' . $headers['repo'] );
+				$id       = rawurlencode( $headers['owner_repo'] );
 				$response = $this->api( "/projects/{$id}/repository/files/language-pack.json" );
 				$response = isset( $response->content )
 					? json_decode( base64_decode( $response->content ) )
 					: null;
 				break;
 			case 'gitea':
-				$response = $this->api( "/repos/{$headers['owner']}/{$headers['repo']}/raw/{$type['branch']}/language-pack.json" );
+				$response = $this->api( "/repos/{$headers['owner_repo']}/raw/{$type['branch']}/language-pack.json" );
 				$response = isset( $response->content )
 					? json_decode( base64_decode( $response->content ) )
 					: null;
@@ -173,25 +173,17 @@ class Language_Pack_API {
 	 * @return string
 	 */
 	private function process_language_pack_package( $git, $locale, $headers ) {
-		$package = null;
-		$type    = $this->return_repo_type();
+		$package        = null;
+		$primary_branch = $this->repo->primary_branch ?? 'master';
 		switch ( $git ) {
 			case 'github':
-				$package = [ $headers['uri'], "blob/{$type['branch']}" ];
+				$package = [ $headers['uri'], "raw/refs/heads/{$primary_branch}" ];
 				$package = implode( '/', $package ) . $locale->package;
-				$package = add_query_arg( [ 'raw' => 'true' ], $package );
 				break;
 			case 'bitbucket':
-				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
-				$package = implode( '/', $package ) . $locale->package;
-				break;
 			case 'gitlab':
-				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
-				$package = implode( '/', $package ) . $locale->package;
-				break;
 			case 'gitea':
-				// TODO: make sure this works.
-				$package = [ $headers['uri'], "raw/{$type['branch']}" ];
+				$package = [ $headers['uri'], "raw/{$primary_branch}" ];
 				$package = implode( '/', $package ) . $locale->package;
 				break;
 		}

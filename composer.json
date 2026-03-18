@@ -3,11 +3,9 @@
   "description": "This framework provides automatic decoupled languate pack updates from a public repository for your WordPress plugin or theme.",
   "type": "library",
   "license": "MIT",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "keywords": [
     "wordpress",
-    "plugin",
-    "theme",
     "updater",
     "language pack",
     "translations"
@@ -32,7 +30,7 @@
   ],
   "prefer-stable": true,
   "require": {
-    "php": ">=5.4",
+    "php": ">=7.4",
     "afragen/singleton": "dev-master"
   },
   "require-dev": {
@@ -49,8 +47,7 @@
     }
   },
   "scripts": {
-    "wpcs": [
-      "vendor/bin/phpcbf .; vendor/bin/phpcs ."
-    ]
+    "lint": "@php ./vendor/bin/phpcs .",
+    "format": "@php ./vendor/bin/phpcbf ."
   }
 }
