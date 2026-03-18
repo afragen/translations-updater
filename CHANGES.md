@@ -1,4 +1,6 @@
 #### [unreleased]
+
+#### 2.1.0 / 2026-03-18
 * update GitHub download URI
 * refactor `Language_Pack_API::process_language_pack_package()`
 * update priority for `update_site_transient`
